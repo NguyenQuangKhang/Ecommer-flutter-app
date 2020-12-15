@@ -1,0 +1,39 @@
+import "package:flutter/material.dart";
+import "package:graphql_flutter/graphql_flutter.dart";
+
+class GraphQLConfiguration {
+  static Link link = null;
+  static HttpLink httpLink = HttpLink(
+    uri: "https://fashionshopuit-server.herokuapp.com/graphql",
+    //uri: "https://10.0.198.164:8000/graphql",
+  );
+
+  static void setToken(String token) {
+    AuthLink alink = AuthLink(getToken: () async => 'Bearer ' + token);
+    GraphQLConfiguration.link = alink.concat(GraphQLConfiguration.httpLink);
+  }
+
+  static void removeToken() {
+    GraphQLConfiguration.link = null;
+  }
+
+  static Link getLink() {
+    return GraphQLConfiguration.link != null
+        ? GraphQLConfiguration.link
+        : GraphQLConfiguration.httpLink;
+  }
+
+  ValueNotifier<GraphQLClient> client = ValueNotifier(
+    GraphQLClient(
+      link: getLink(),
+      cache: OptimisticCache(dataIdFromObject: typenameDataIdFromObject),
+    ),
+  );
+
+  GraphQLClient clientToQuery() {
+    return GraphQLClient(
+      cache: OptimisticCache(dataIdFromObject: typenameDataIdFromObject),
+      link: getLink(),
+    );
+  }
+}
