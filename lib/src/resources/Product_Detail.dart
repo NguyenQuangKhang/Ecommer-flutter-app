@@ -1,18 +1,16 @@
-import 'dart:ffi';
+
 
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:fashionshop/src/FirebaseMethod/FirebaseMethod.dart';
-import 'package:fashionshop/src/bloc/Login_Bloc/LoginBloc.dart';
 import 'package:fashionshop/src/bloc/ProductDetailBloc/ProductDetailBloc.dart';
-import 'package:fashionshop/src/bloc/ProductDetailBloc/ProductDetailEvent.dart';
 import 'package:fashionshop/src/bloc/ProductDetailBloc/ProductDetailState.dart';
-import 'package:fashionshop/src/model/Product.dart';
 import 'package:fashionshop/src/new_model/product_detailed.dart';
 import 'package:fashionshop/src/resources/ReviewAndRating_Screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_html/flutter_html.dart';
+
 
 import 'package:intl/intl.dart';
 
@@ -499,14 +497,9 @@ class _Product_DetailState extends State<Product_Detail> {
                               style:
                                   TextStyle(fontSize: 14, color: Colors.black),
                             ),
-                            secondChild: Html(
-                              context
-                                  .bloc<ProductDetailBloc>()
-                                  .productDetail
-                                  .description,
-                              style:
-                                  TextStyle(fontSize: 14, color: Colors.black),
-                            ),
+                            secondChild: Html(data:context
+                                .bloc<ProductDetailBloc>()
+                                .productDetail.description ,),
                             crossFadeState: isExpanded
                                 ? CrossFadeState.showSecond
                                 : CrossFadeState.showFirst,

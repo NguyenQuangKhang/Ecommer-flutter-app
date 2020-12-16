@@ -6,6 +6,7 @@ INJECTED from C:\Users\Khang\Documents\Github\Ecommer-flutter-app\android\app\sr
 INJECTED from C:\Users\Khang\Documents\Github\Ecommer-flutter-app\android\app\src\main\AndroidManifest.xml:1:1-47:12
 MERGED from C:\Users\Khang\Documents\Github\Ecommer-flutter-app\android\app\src\main\AndroidManifest.xml:1:1-47:12
 MERGED from [:file_picker] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-9:12
+MERGED from [:video_player] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\video_player\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:cloud_firestore] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:cloud_firestore_web] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\cloud_firestore_web\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:firebase_database] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\firebase_database\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
@@ -13,8 +14,10 @@ MERGED from [:firebase_core] C:\Users\Khang\Documents\Github\Ecommer-flutter-app
 MERGED from [:firebase_core_web] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\firebase_core_web\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:connectivity] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\connectivity\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-10:12
 MERGED from [:connectivity_macos] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\connectivity_macos\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:wakelock] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\wakelock\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:image_picker] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-22:12
 MERGED from [:flutter_plugin_android_lifecycle] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:webview_flutter] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\webview_flutter\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:path_provider] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\path_provider\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:firebase-firestore:21.3.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\18d578337ec006db2235ead85e536454\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:2:1-26:12
 MERGED from [com.google.firebase:firebase-database:17.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\eec17347279a89ad7919aa05498f84a3\jetified-firebase-database-17.0.0\AndroidManifest.xml:15:1-36:12
@@ -24,6 +27,7 @@ MERGED from [com.google.firebase:firebase-common:19.3.0] C:\Users\Khang\.gradle\
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\187fb4c1c365ae32171bd8312a35992f\play-services-tasks-17.0.0\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\55d9562ecb26aa2f976b334471a931f9\jetified-play-services-basement-17.0.0\AndroidManifest.xml:17:1-28:12
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\0d479d426be2ba1f4bdfee2f9a7aa519\fragment-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.webkit:webkit:1.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\3af8640ce562b4b4e0a6111579ef27f6\webkit-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\4881302d1430cfdcaa10344523e2ce7f\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\28c8df72e3e98cf2af337943db219b6d\loader-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.activity:activity:1.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\5a1de8d3594afca67ad230d5d25a73b9\activity-1.0.0\AndroidManifest.xml:17:1-24:12
@@ -33,8 +37,14 @@ MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\Khang\.gradle\
 MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\13eb812daeca5edd5883d98298d1a9d8\savedstate-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\82b463c8584fb88ea5a1f562d740c4b7\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\a78ce9b49fd39a3eac90624d04d1ee8a\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.12.1] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\7e8162b9b2b1fa3c1ffde3d0255da233\exoplayer-hls-2.12.1\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.12.1] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\87e8b8d9c095cd2faccbcc5e84668b76\exoplayer-dash-2.12.1\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.12.1] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\5768751ec6df02e1d630bc2d5ceff0b3\exoplayer-smoothstreaming-2.12.1\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.12.1] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\59c64c6f0354ffe8f2a2f14ca084d685\exoplayer-core-2.12.1\AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\3bf5fc05ca184d01c3bed36c84f7c6c7\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\4227c25f5adddf6ac1aa1a65c6b6f6a4\versionedparcelable-1.1.0\AndroidManifest.xml:17:1-27:12
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.12.1] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\0f8bc5ca9177617c366959d08ca0670a\jetified-exoplayer-extractor-2.12.1\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.12.1] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\77fabf710cc635bbff8aa936e3c7faa2\jetified-exoplayer-common-2.12.1\AndroidManifest.xml:17:1-26:12
 MERGED from [com.google.firebase:firebase-components:16.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\ceb0798084118bda5b733637945eada4\jetified-firebase-components-16.0.0\AndroidManifest.xml:15:1-23:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\d51e0220d8e43d4bfbf3a1c4895b8a97\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.firebase:firebase-database-collection:17.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\b6af014a2c327ee5be3b6ff514bba95a\firebase-database-collection-17.0.0\AndroidManifest.xml:2:1-7:12
@@ -141,6 +151,8 @@ INJECTED from C:\Users\Khang\Documents\Github\Ecommer-flutter-app\android\app\sr
 INJECTED from C:\Users\Khang\Documents\Github\Ecommer-flutter-app\android\app\src\main\AndroidManifest.xml
 MERGED from [:file_picker] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:file_picker] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\file_picker\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:video_player] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\video_player\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:video_player] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\video_player\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:cloud_firestore] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:cloud_firestore] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:cloud_firestore_web] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\cloud_firestore_web\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
@@ -155,10 +167,14 @@ MERGED from [:connectivity] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\
 MERGED from [:connectivity] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\connectivity\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:connectivity_macos] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\connectivity_macos\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:connectivity_macos] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\connectivity_macos\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:wakelock] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\wakelock\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:wakelock] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\wakelock\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:image_picker] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:image_picker] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:flutter_plugin_android_lifecycle] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:flutter_plugin_android_lifecycle] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:webview_flutter] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\webview_flutter\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:webview_flutter] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\webview_flutter\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:path_provider] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\path_provider\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:path_provider] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\path_provider\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-firestore:21.3.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\18d578337ec006db2235ead85e536454\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:7:5-9:41
@@ -177,6 +193,8 @@ MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\Khan
 MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\55d9562ecb26aa2f976b334471a931f9\jetified-play-services-basement-17.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\0d479d426be2ba1f4bdfee2f9a7aa519\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\0d479d426be2ba1f4bdfee2f9a7aa519\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.webkit:webkit:1.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\3af8640ce562b4b4e0a6111579ef27f6\webkit-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.webkit:webkit:1.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\3af8640ce562b4b4e0a6111579ef27f6\webkit-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\4881302d1430cfdcaa10344523e2ce7f\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\4881302d1430cfdcaa10344523e2ce7f\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\28c8df72e3e98cf2af337943db219b6d\loader-1.0.0\AndroidManifest.xml:20:5-44
@@ -195,10 +213,22 @@ MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Khang\.gradle
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\82b463c8584fb88ea5a1f562d740c4b7\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\a78ce9b49fd39a3eac90624d04d1ee8a\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\a78ce9b49fd39a3eac90624d04d1ee8a\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.12.1] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\7e8162b9b2b1fa3c1ffde3d0255da233\exoplayer-hls-2.12.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.12.1] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\7e8162b9b2b1fa3c1ffde3d0255da233\exoplayer-hls-2.12.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.12.1] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\87e8b8d9c095cd2faccbcc5e84668b76\exoplayer-dash-2.12.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.12.1] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\87e8b8d9c095cd2faccbcc5e84668b76\exoplayer-dash-2.12.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.12.1] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\5768751ec6df02e1d630bc2d5ceff0b3\exoplayer-smoothstreaming-2.12.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.12.1] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\5768751ec6df02e1d630bc2d5ceff0b3\exoplayer-smoothstreaming-2.12.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.12.1] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\59c64c6f0354ffe8f2a2f14ca084d685\exoplayer-core-2.12.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.12.1] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\59c64c6f0354ffe8f2a2f14ca084d685\exoplayer-core-2.12.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\3bf5fc05ca184d01c3bed36c84f7c6c7\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\3bf5fc05ca184d01c3bed36c84f7c6c7\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\4227c25f5adddf6ac1aa1a65c6b6f6a4\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\4227c25f5adddf6ac1aa1a65c6b6f6a4\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.12.1] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\0f8bc5ca9177617c366959d08ca0670a\jetified-exoplayer-extractor-2.12.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.12.1] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\0f8bc5ca9177617c366959d08ca0670a\jetified-exoplayer-extractor-2.12.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.12.1] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\77fabf710cc635bbff8aa936e3c7faa2\jetified-exoplayer-common-2.12.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.12.1] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\77fabf710cc635bbff8aa936e3c7faa2\jetified-exoplayer-common-2.12.1\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-components:16.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\ceb0798084118bda5b733637945eada4\jetified-firebase-components-16.0.0\AndroidManifest.xml:19:5-21:41
 MERGED from [com.google.firebase:firebase-components:16.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\ceb0798084118bda5b733637945eada4\jetified-firebase-components-16.0.0\AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\d51e0220d8e43d4bfbf3a1c4895b8a97\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
@@ -275,6 +305,10 @@ MERGED from [com.google.firebase:firebase-firestore:21.3.0] C:\Users\Khang\.grad
 MERGED from [com.google.firebase:firebase-firestore:21.3.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\18d578337ec006db2235ead85e536454\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:13:5-79
 MERGED from [com.google.firebase:firebase-database:17.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\eec17347279a89ad7919aa05498f84a3\jetified-firebase-database-17.0.0\AndroidManifest.xml:25:5-79
 MERGED from [com.google.firebase:firebase-database:17.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\eec17347279a89ad7919aa05498f84a3\jetified-firebase-database-17.0.0\AndroidManifest.xml:25:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.12.1] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\59c64c6f0354ffe8f2a2f14ca084d685\exoplayer-core-2.12.1\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.12.1] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\59c64c6f0354ffe8f2a2f14ca084d685\exoplayer-core-2.12.1\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.12.1] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\77fabf710cc635bbff8aa936e3c7faa2\jetified-exoplayer-common-2.12.1\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.12.1] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\77fabf710cc635bbff8aa936e3c7faa2\jetified-exoplayer-common-2.12.1\AndroidManifest.xml:24:5-79
 MERGED from [io.grpc:grpc-android:1.21.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\34268753bded0b91ecc4a1af1815ce82\grpc-android-1.21.0\AndroidManifest.xml:11:5-79
 MERGED from [io.grpc:grpc-android:1.21.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\34268753bded0b91ecc4a1af1815ce82\grpc-android-1.21.0\AndroidManifest.xml:11:5-79
 	android:name
