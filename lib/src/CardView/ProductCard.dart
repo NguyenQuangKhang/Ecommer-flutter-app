@@ -1,5 +1,5 @@
 
-import 'package:fashionshop/src/model/Product.dart';
+import 'package:fashionshop/src/new_model/product.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -33,7 +33,7 @@ class ProductCard extends StatelessWidget {
         children: <Widget>[
           ClipRRect(
             borderRadius: BorderRadius.only(topRight: Radius.circular(8),topLeft: Radius.circular(8)),
-              child: Image.network(product.imgUrl !=null?"https://fashionshopuit-server.herokuapp.com/image/" +product.imgUrl:"https://cdn.tgdd.vn/comment/34134321/58595582_1405843519557852_4325264661025914880_n-20190424085228.jpg",fit: BoxFit.fill,
+              child: Image.network(product.imgUrl !=null?product.imgUrl:"https://cdn.tgdd.vn/comment/34134321/58595582_1405843519557852_4325264661025914880_n-20190424085228.jpg",fit: BoxFit.fill,
                 width: MediaQuery.of(context).size.width/2,
                 height: MediaQuery.of(context).size.height/3-80,
 
@@ -76,7 +76,7 @@ class ProductCard extends StatelessWidget {
                           allowHalfRating: true,
                           starCount: 5,
                           size: 20,
-                          rating: product.rating!=null? product.rating : 0 ,
+                          rating: product.percentStar!=null? product.percentStar : 0 ,
                           filledIconData: Icons.star,
                           halfFilledIconData: Icons.star_half,
                           color: Colors.yellowAccent,
@@ -93,7 +93,7 @@ class ProductCard extends StatelessWidget {
                             alignment: Alignment.centerLeft,
 
                             child:
-                            Text(NumberFormat.simpleCurrency(locale: "vi").format(product.final_price).toString(),style: TextStyle(fontSize: 18,color: Colors.blue,fontWeight: FontWeight.w500,),
+                            Text(NumberFormat.simpleCurrency(locale: "vi").format(product.finalPrice).toString(),style: TextStyle(fontSize: 18,color: Colors.blue,fontWeight: FontWeight.w500,),
                             ),
 
                           )
@@ -112,11 +112,11 @@ class ProductCard extends StatelessWidget {
                                 ),
 
                               ),
-                              product.promotion_percent!=0? Container(
+                              product.promotionPercent!=0? Container(
                                 height: 20,width: 40,
                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Color(0xffdb3022)),
                                 child: Center(
-                                  child: Text(product.promotion_percent.toString()+"%",style: TextStyle(fontSize: 15,color: Colors.white),),
+                                  child: Text(product.promotionPercent.toString()+"%",style: TextStyle(fontSize: 15,color: Colors.white),),
                                 ),
                               ): Container(),
                               //SizedBox(width: 5,),

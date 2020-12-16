@@ -350,7 +350,7 @@ bool addmore=false;
                                                     ],),
                                                     child: Center(child:ClipRRect(
                                                       borderRadius: BorderRadius.circular(25),
-                                                      child: Image.network(category.icon !=null?"https://fashionshopuit-server.herokuapp.com/image/"+category.icon : "https://i.pinimg.com/236x/30/87/8d/30878dc76c22265aa23b6c0328886113.jpg" ,fit: BoxFit.fill,
+                                                      child: Image.network(category.icon !=null?category.icon : "https://i.pinimg.com/236x/30/87/8d/30878dc76c22265aa23b6c0328886113.jpg" ,fit: BoxFit.fill,
                                                         width: 25,
                                                         height: 25,
 
@@ -598,7 +598,7 @@ bool addmore=false;
                                                             create: (context){
                                                               return ProductDetailBloc(
 
-                                                              )..add(ProductDetailLoadEvent(id: state.data[index].id,person_id: context.bloc<LoginBloc>().id));
+                                                              )..add(ProductDetailLoadEvent(id: state.data[index].productId,person_id: context.bloc<LoginBloc>().id));
                                                             },
                                                             child: Product_Detail()
                                                         )

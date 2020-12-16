@@ -38,7 +38,7 @@ class FavoriteGetMoreDataEvent extends FavoriteEvent {
 class actionFavoriteEvent extends FavoriteEvent {
 
   final String person_id;
-  final String product_id;
+  final int product_id;
   final int index;
 
   actionFavoriteEvent({this.person_id,this.product_id,this.index});

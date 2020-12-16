@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:fashionshop/src/model/Filter.dart';
-import 'package:fashionshop/src/model/Product.dart';
+import 'package:fashionshop/src/new_model/product.dart';
+
+
 
 abstract class ProductsState extends Equatable {
   final List<Product> data;

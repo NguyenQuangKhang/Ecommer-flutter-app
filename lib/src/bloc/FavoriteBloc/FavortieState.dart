@@ -1,6 +1,6 @@
 
 import 'package:equatable/equatable.dart';
-import 'package:fashionshop/src/model/Product.dart';
+import 'package:fashionshop/src/new_model/product.dart';
 
 
 

@@ -126,7 +126,7 @@ class Explore_TabPage extends StatelessWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.only(topRight: Radius.circular(8),bottomRight: Radius.circular(8)),
                             child: Image.network(
-                              categoryLevel1.listSub_cat[i].imgUrl ==null ? "https://i.pinimg.com/236x/5b/8c/2f/5b8c2fcde3715bf0727f93164be0d58e.jpg" : "https://fashionshopuit-server.herokuapp.com/image/"+categoryLevel1.listSub_cat[i].imgUrl,
+                              categoryLevel1.listSub_cat[i].imgUrl ==null ? "https://i.pinimg.com/236x/5b/8c/2f/5b8c2fcde3715bf0727f93164be0d58e.jpg" : categoryLevel1.listSub_cat[i].imgUrl,
                               height: MediaQuery
                                   .of(context)
                                   .size

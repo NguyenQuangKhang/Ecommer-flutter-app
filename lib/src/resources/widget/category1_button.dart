@@ -16,7 +16,7 @@ class Category1Button extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Image.network(
-            "https://fashionshopuit-server.herokuapp.com/image/"+  data.url,
+              data.url,
             width: 30,
             height: 30,
             color: isSelected?Colors.red: Colors.black54,

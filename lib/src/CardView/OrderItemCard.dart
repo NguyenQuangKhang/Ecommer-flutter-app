@@ -1,7 +1,6 @@
 import 'package:fashionshop/src/bloc/CartBloc/CartBloc.dart';
 import 'package:fashionshop/src/bloc/CartBloc/CartEvent.dart';
 import 'package:fashionshop/src/model/OrderItem.dart';
-import 'package:fashionshop/src/model/Product.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -32,7 +31,7 @@ class OrderItemCard extends StatelessWidget {
       child: Row(
         children: <Widget>[
           Container(
-            child: Image.network("https://fashionshopuit-server.herokuapp.com/image/"+orderItem.productImgURL,fit: BoxFit.fill,),
+            child: Image.network(orderItem.productImgURL,fit: BoxFit.fill,),
 
             width: MediaQuery.of(context).size.width/3-15,
             height: MediaQuery.of(context).size.height/7+10,

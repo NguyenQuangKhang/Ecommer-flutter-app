@@ -2,10 +2,11 @@
 
 import 'package:equatable/equatable.dart';
 import 'package:fashionshop/src/model/ProductDetail.dart';
+import 'package:fashionshop/src/new_model/product_detailed.dart';
 
 
 abstract class ProductDetailState extends Equatable {
-  final ProductDetail data;
+  final ProductDetailed data;
 
 
   ProductDetailState({
@@ -24,7 +25,7 @@ abstract class ProductDetailState extends Equatable {
 
 class ProductDetailShowState extends ProductDetailState {
   ProductDetailShowState({
-    ProductDetail data,
+    ProductDetailed data,
 
   }) : super(
       data: data);
@@ -33,7 +34,7 @@ class ProductDetailShowState extends ProductDetailState {
 
 class Initial extends ProductDetailState {
   Initial({
-    ProductDetail data,
+    ProductDetailed data,
 
   }) : super(
       data: data);

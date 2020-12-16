@@ -13,7 +13,7 @@ abstract class ProductDetailEvent extends Equatable {
   const ProductDetailEvent();
 }
 class ProductDetailLoadEvent extends ProductDetailEvent {
- final String id;
+ final int id;
   final String person_id;
 
   ProductDetailLoadEvent({this.id, this.person_id});

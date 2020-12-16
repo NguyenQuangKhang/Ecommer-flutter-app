@@ -1,7 +1,6 @@
 import 'package:fashionshop/src/model/Filter.dart';
 
-import 'package:fashionshop/src/model/Filter.dart';
-import 'package:fashionshop/src/model/Product.dart';
+
 import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
 

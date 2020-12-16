@@ -1,29 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Khang\\Documents\\Github\\FashionShop.uit\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "outputFile": "C:\\Users\\Khang\\Documents\\Github\\Ecommer-flutter-app\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Khang\\Documents\\Github\\FashionShop.uit\\android\\app\\src\\main\\res\\values\\styles.xml",
-                    "from": {
-                        "startLines": "3,14",
-                        "startColumns": "4,4",
-                        "startOffsets": "137,791",
-                        "endLines": "7,16",
-                        "endColumns": "12,12",
-                        "endOffsets": "433,953"
-                    },
-                    "to": {
-                        "startLines": "113,118",
-                        "startColumns": "4,4",
-                        "startOffsets": "8660,8957",
-                        "endLines": "117,120",
-                        "endColumns": "12,12",
-                        "endOffsets": "8952,9117"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Khang\\Documents\\Github\\FashionShop.uit\\build\\app\\generated\\res\\google-services\\debug\\values\\values.xml",
+                    "source": "C:\\Users\\Khang\\Documents\\Github\\Ecommer-flutter-app\\build\\app\\generated\\res\\google-services\\debug\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -92,6 +73,25 @@
                         "startOffsets": "5259,6437",
                         "endColumns": "67,166",
                         "endOffsets": "5322,6599"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Khang\\Documents\\Github\\Ecommer-flutter-app\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "from": {
+                        "startLines": "3,14",
+                        "startColumns": "4,4",
+                        "startOffsets": "137,791",
+                        "endLines": "7,16",
+                        "endColumns": "12,12",
+                        "endOffsets": "433,953"
+                    },
+                    "to": {
+                        "startLines": "113,118",
+                        "startColumns": "4,4",
+                        "startOffsets": "8660,8957",
+                        "endLines": "117,120",
+                        "endColumns": "12,12",
+                        "endOffsets": "8952,9117"
                     }
                 }
             ]

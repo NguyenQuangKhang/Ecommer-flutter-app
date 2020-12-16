@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
+import 'package:fashionshop/src/new_model/product.dart';
 
-import 'package:fashionshop/src/model/Product.dart';
 abstract class SearchState extends Equatable {
   final List<Product> data;
   final int SortBy;

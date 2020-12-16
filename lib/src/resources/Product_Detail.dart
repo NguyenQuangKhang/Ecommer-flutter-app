@@ -7,7 +7,7 @@ import 'package:fashionshop/src/bloc/ProductDetailBloc/ProductDetailBloc.dart';
 import 'package:fashionshop/src/bloc/ProductDetailBloc/ProductDetailEvent.dart';
 import 'package:fashionshop/src/bloc/ProductDetailBloc/ProductDetailState.dart';
 import 'package:fashionshop/src/model/Product.dart';
-import 'package:fashionshop/src/model/ProductDetail.dart';
+import 'package:fashionshop/src/new_model/product_detailed.dart';
 import 'package:fashionshop/src/resources/ReviewAndRating_Screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,11 +24,12 @@ class Product_Detail extends StatefulWidget {
 }
 
 class _Product_DetailState extends State<Product_Detail> {
-  List<AttributeValue> listSize = [];
-  List<AttributeValue> listColor = [];
+  List<Value> listSize = [];
+  List<Value> listColor = [];
   String option_amountId;
   int _current = 0;
   bool isExpanded = false;
+
   List<T> map<T>(List list, Function handler) {
     List<T> result = [];
     for (var i = 0; i < list.length; i++) {
@@ -37,8 +38,8 @@ class _Product_DetailState extends State<Product_Detail> {
     return result;
   }
 
-  String _currentSizeId = null;
-  String _currentColorId = null;
+  int _currentSizeId = null;
+  int _currentColorId = null;
   int soluongtonkho;
   List<String> listImage = [
     "https://i.pinimg.com/236x/30/87/8d/30878dc76c22265aa23b6c0328886113.jpg",
@@ -47,6 +48,7 @@ class _Product_DetailState extends State<Product_Detail> {
     "https://i.pinimg.com/236x/5b/8c/2f/5b8c2fcde3715bf0727f93164be0d58e.jpg",
     "https://i.pinimg.com/236x/65/88/d1/6588d14ad9b2df7bab9f9b68c8cfe639.jpg"
   ];
+
   @override
   void initState() {
     // TODO: implement initState
@@ -62,36 +64,23 @@ class _Product_DetailState extends State<Product_Detail> {
         builder: (context, state) {
       if (state == Initial()) return Container();
       for (int i = 0;
-          i <
-              context
-                  .bloc<ProductDetailBloc>()
-                  .productDetail
-                  .list_Attribute
-                  .length;
+          i < context.bloc<ProductDetailBloc>().productDetail.attribute.length;
           i++) {
-        if (context
-                .bloc<ProductDetailBloc>()
-                .productDetail
-                .list_Attribute[i]
-                .name ==
+        if (context.bloc<ProductDetailBloc>().productDetail.attribute[i].name ==
             "Màu sắc") {
           listColor = context
               .bloc<ProductDetailBloc>()
               .productDetail
-              .list_Attribute[i]
-              .values;
+              .attribute[i]
+              .value;
         }
-        if (context
-                .bloc<ProductDetailBloc>()
-                .productDetail
-                .list_Attribute[i]
-                .name ==
+        if (context.bloc<ProductDetailBloc>().productDetail.attribute[i].name ==
             "Kích thước")
           listSize = context
               .bloc<ProductDetailBloc>()
               .productDetail
-              .list_Attribute[i]
-              .values;
+              .attribute[i]
+              .value;
       }
       return Scaffold(
         appBar: AppBar(
@@ -108,10 +97,7 @@ class _Product_DetailState extends State<Product_Detail> {
               size: 30,
             ),
           ),
-          actions: <Widget>[
-
-
-          ],
+          actions: <Widget>[],
         ),
         body: Container(
           color: Colors.white,
@@ -161,14 +147,12 @@ class _Product_DetailState extends State<Product_Detail> {
                                       color: Colors.lightBlue.withOpacity(0.5),
                                       spreadRadius: 2,
                                       blurRadius: 4,
-                                      offset: Offset(0, 0), // changes position of shadow
+                                      offset: Offset(
+                                          0, 0), // changes position of shadow
                                     ),
                                   ],
-                                  ),
-                                child: Image.network(
-                                    "https://fashionshopuit-server.herokuapp.com/image/" +
-                                        imgURL,
-                                    fit: BoxFit.fill),
+                                ),
+                                child: Image.network("https://media3.scdn.vn"+imgURL, fit: BoxFit.fill),
                               );
                             },
                           );
@@ -207,7 +191,7 @@ class _Product_DetailState extends State<Product_Detail> {
 //             Container(
 //               width: MediaQuery.of(context).size.width,
 //               height: 300,
-//               child: Image.network(widget.product.imgUrl!=null?"https://fashionshopuit-server.herokuapp.com/image/"+widget.product.imgUrl: "https://cdn.tgdd.vn/comment/34134321/58595582_1405843519557852_4325264661025914880_n-20190424085228.jpg",fit: BoxFit.fill,colorBlendMode: BlendMode.darken,),
+//               child: Image.network(widget.product.imgUrl!=null?widget.product.imgUrl: "https://cdn.tgdd.vn/comment/34134321/58595582_1405843519557852_4325264661025914880_n-20190424085228.jpg",fit: BoxFit.fill,colorBlendMode: BlendMode.darken,),
 //             ),
 
                     soluongtonkho != null
@@ -257,14 +241,13 @@ class _Product_DetailState extends State<Product_Detail> {
                                 ),
                               ],
                             ),
-                            child: DropdownButton<String>(
-                              items:
-                                  listSize.map((AttributeValue dropDownItem) {
-                                return DropdownMenuItem<String>(
-                                  value: dropDownItem.id,
+                            child: DropdownButton<int>(
+                              items: listSize.map((Value dropDownItem) {
+                                return DropdownMenuItem<int>(
+                                  value: dropDownItem.optionId,
                                   child: Center(
                                     child: Text(
-                                      dropDownItem.name,
+                                      dropDownItem.value,
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 12),
@@ -272,37 +255,9 @@ class _Product_DetailState extends State<Product_Detail> {
                                   ),
                                 );
                               }).toList(),
-                              onChanged: (String newValue) {
+                              onChanged: (int newValue) {
                                 setState(() {
                                   _currentSizeId = newValue;
-                                  if (_currentColorId != null &&
-                                      _currentSizeId != null)
-                                    for (int i = 0;
-                                        i <
-                                            context
-                                                .bloc<ProductDetailBloc>()
-                                                .productDetail
-                                                .list_optionAmount
-                                                .length;
-                                        i++) {
-                                      if (context
-                                                  .bloc<ProductDetailBloc>()
-                                                  .productDetail
-                                                  .list_optionAmount[i]
-                                                  .option_color ==
-                                              _currentColorId &&
-                                          context
-                                                  .bloc<ProductDetailBloc>()
-                                                  .productDetail
-                                                  .list_optionAmount[i]
-                                                  .option_size ==
-                                              _currentSizeId)
-                                        soluongtonkho = context
-                                            .bloc<ProductDetailBloc>()
-                                            .productDetail
-                                            .list_optionAmount[i]
-                                            .amount;
-                                    }
                                 });
                               },
                               value: _currentSizeId,
@@ -337,57 +292,22 @@ class _Product_DetailState extends State<Product_Detail> {
                               ],
                             ),
                             margin: EdgeInsets.fromLTRB(0, 0, 20, 5),
-                            child: DropdownButton(
-                              items:
-                                  listColor.map((AttributeValue dropDownItem) {
+                            child: DropdownButton<int>(
+                              items: listColor.map((Value dropDownItem) {
                                 return DropdownMenuItem(
-                                  value: dropDownItem.id,
+                                  value: dropDownItem.optionId,
                                   child: Center(
                                       child: Text(
-                                    dropDownItem.name,
+                                    dropDownItem.value?? "khác",
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 12),
                                   )),
                                 );
                               }).toList(),
-                              onChanged: (String newValue) {
+                              onChanged: (int newValue) {
                                 setState(() {
                                   _currentColorId = newValue;
-                                  if (_currentColorId != null &&
-                                      _currentSizeId != null)
-                                    for (int i = 0;
-                                        i <
-                                            context
-                                                .bloc<ProductDetailBloc>()
-                                                .productDetail
-                                                .list_optionAmount
-                                                .length;
-                                        i++) {
-                                      if (context
-                                                  .bloc<ProductDetailBloc>()
-                                                  .productDetail
-                                                  .list_optionAmount[i]
-                                                  .option_color ==
-                                              _currentColorId &&
-                                          context
-                                                  .bloc<ProductDetailBloc>()
-                                                  .productDetail
-                                                  .list_optionAmount[i]
-                                                  .option_size ==
-                                              _currentSizeId) {
-                                        soluongtonkho = context
-                                            .bloc<ProductDetailBloc>()
-                                            .productDetail
-                                            .list_optionAmount[i]
-                                            .amount;
-                                        option_amountId = context
-                                            .bloc<ProductDetailBloc>()
-                                            .productDetail
-                                            .list_optionAmount[i]
-                                            .id;
-                                      }
-                                    }
                                 });
                               },
                               value: _currentColorId,
@@ -449,7 +369,7 @@ class _Product_DetailState extends State<Product_Detail> {
                                         .format(context
                                             .bloc<ProductDetailBloc>()
                                             .productDetail
-                                            .final_price)
+                                            .finalPrice)
                                         .toString(),
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
@@ -463,7 +383,7 @@ class _Product_DetailState extends State<Product_Detail> {
                               context
                                           .bloc<ProductDetailBloc>()
                                           .productDetail
-                                          .promotion_percent !=
+                                          .promotionPercent !=
                                       0
                                   ? Container(
                                       alignment: Alignment.topCenter,
@@ -490,7 +410,7 @@ class _Product_DetailState extends State<Product_Detail> {
                               context
                                           .bloc<ProductDetailBloc>()
                                           .productDetail
-                                          .promotion_percent !=
+                                          .promotionPercent !=
                                       0
                                   ? Container(
                                       height: 20,
@@ -508,7 +428,7 @@ class _Product_DetailState extends State<Product_Detail> {
                                               context
                                                       .bloc<ProductDetailBloc>()
                                                       .productDetail
-                                                      .promotion_percent
+                                                      .promotionPercent
                                                       .toString() +
                                                   "%",
                                               style: TextStyle(
@@ -532,12 +452,12 @@ class _Product_DetailState extends State<Product_Detail> {
                                   rating: context
                                               .bloc<ProductDetailBloc>()
                                               .productDetail
-                                              .rating !=
+                                              .ratingInfo !=
                                           null
-                                      ? context
+                                      ? calStarRating(context
                                           .bloc<ProductDetailBloc>()
                                           .productDetail
-                                          .rating
+                                          .ratingInfo)
                                       : 0,
                                   filledIconData: Icons.star,
                                   halfFilledIconData: Icons.star_half,
@@ -554,10 +474,10 @@ class _Product_DetailState extends State<Product_Detail> {
                                 alignment: Alignment.center,
                                 child: Text(
                                   "(" +
-                                      context
+                                      calStarRating(context
                                           .bloc<ProductDetailBloc>()
                                           .productDetail
-                                          .rating
+                                          .ratingInfo)
                                           .toString() +
                                       ")",
                                   style: TextStyle(
@@ -574,12 +494,12 @@ class _Product_DetailState extends State<Product_Detail> {
                               context
                                   .bloc<ProductDetailBloc>()
                                   .productDetail
-                                  .description,
+                                  .shortDescription,
                               maxLines: 2,
                               style:
                                   TextStyle(fontSize: 14, color: Colors.black),
                             ),
-                            secondChild: Text(
+                            secondChild: Html(
                               context
                                   .bloc<ProductDetailBloc>()
                                   .productDetail
@@ -631,9 +551,9 @@ class _Product_DetailState extends State<Product_Detail> {
                     ),
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Row(                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-
                           Text(
                             "Top Reviews:",
                             style: TextStyle(
@@ -641,130 +561,133 @@ class _Product_DetailState extends State<Product_Detail> {
                                 color: Colors.red,
                                 fontWeight: FontWeight.bold),
                           ),
-                          InkWell(onTap: (){
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ReviewScreen()
-
-                                ));
-                            }
-                          ,child: Text("See more",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,color: Colors.blueAccent),)),
-
+                          InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ReviewScreen()));
+                              },
+                              child: Text(
+                                "See more",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: Colors.blueAccent),
+                              )),
                         ],
                       ),
                     ),
-              Stack(
-                  children: <Widget>[
-                    Container(
-                      decoration: BoxDecoration(color: Color(0xffffffff)),
-                      margin: EdgeInsets.fromLTRB(20, 20, 20, 20),
-                      child: Column(
-                        children: <Widget>[
-                          Column(
+                    Stack(
+                      children: <Widget>[
+                        Container(
+                          decoration: BoxDecoration(color: Color(0xffffffff)),
+                          margin: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                          child: Column(
                             children: <Widget>[
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Row(
+                              Column(
                                 children: <Widget>[
                                   SizedBox(
-                                    width: 20,
+                                    height: 20,
                                   ),
-                                  Text(
-                                    "Nancy",
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Row(children: <Widget>[
-                                    SmoothStarRating(
-                                      allowHalfRating: true,
-                                      starCount: 5,
-                                      size: 20,
-                                      rating: 4.3,
-                                      filledIconData: Icons.star,
-                                      halfFilledIconData: Icons.star_half,
-                                      color: Colors.amber,
-                                      borderColor: Colors.grey,
-                                      spacing: 0.0,
-                                    ),
-                                    Text(
-                                      "(4.3)",
-                                    )
-                                  ]),
-                                  Container(
-                                    margin: EdgeInsets.only(right: 10),
-                                    child: Text(
-                                      "11:20:02 , 20/08/2019",
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        color: Colors.black26,
+                                  Row(
+                                    children: <Widget>[
+                                      SizedBox(
+                                        width: 20,
                                       ),
-                                    ),
+                                      Text(
+                                        "Nancy",
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Row(children: <Widget>[
+                                        SmoothStarRating(
+                                          allowHalfRating: true,
+                                          starCount: 5,
+                                          size: 20,
+                                          rating: 4.3,
+                                          filledIconData: Icons.star,
+                                          halfFilledIconData: Icons.star_half,
+                                          color: Colors.amber,
+                                          borderColor: Colors.grey,
+                                          spacing: 0.0,
+                                        ),
+                                        Text(
+                                          "(4.3)",
+                                        )
+                                      ]),
+                                      Container(
+                                        margin: EdgeInsets.only(right: 10),
+                                        child: Text(
+                                          "11:20:02 , 20/08/2019",
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                            color: Colors.black26,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Container(
+                                          padding: EdgeInsets.fromLTRB(
+                                              15, 15, 15, 15),
+                                          child: Text(
+                                            "Nice product and your delivery is so good. I'm very satified.",
+                                            style: TextStyle(
+                                              fontSize: 10,
+                                              color: Colors.black,
+                                            ),
+                                          )),
+                                    ],
                                   ),
                                 ],
                               ),
-                              Row(
-                                children: <Widget>[
-                                  Container(
-                                      padding: EdgeInsets.fromLTRB(
-                                          15, 15, 15, 15),
-                                      child: Text(
-                                        "Nice product and your delivery is so good. I'm very satified.",
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          color: Colors.black,
-                                        ),
-                                      )),
-                                ],
-                              ),
+                              Container(
+                                  margin: EdgeInsets.fromLTRB(15, 0, 0, 15),
+                                  height: 150,
+                                  child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: listImage.length,
+                                      itemBuilder: (context, index) {
+                                        String image = listImage[index];
+                                        return Padding(
+                                            padding: EdgeInsets.only(right: 20),
+                                            child: Image.network(
+                                              "http://media3.scdn.vn"+image,
+                                              fit: BoxFit.fill,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  4,
+                                              height: 150,
+                                              colorBlendMode: BlendMode.darken,
+                                            ));
+                                      }))
                             ],
                           ),
-                          Container(
-                              margin: EdgeInsets.fromLTRB(15, 0, 0, 15),
-                              height: 150,
-                              child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: listImage.length,
-                                  itemBuilder: (context, index) {
-                                    String image = listImage[index];
-                                    return Padding(
-                                        padding: EdgeInsets.only(right: 20),
-                                        child: Image.network(
-                                          image,
-                                          fit: BoxFit.fill,
-                                          width: MediaQuery.of(context)
-                                              .size
-                                              .width /
-                                              4,
-                                          height: 150,
-                                          colorBlendMode: BlendMode.darken,
-                                        ));
-                                  }))
-                        ],
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
-                      child: Align(
-                          alignment: Alignment.topLeft,
-                          child: CircleAvatar(
-                            backgroundImage: NetworkImage(
-                                "https://i.pinimg.com/236x/b5/0e/31/b50e311008e481dafae4be71f44f5d1f.jpg"),
-                            radius: 15,
-                          )),
-                    ),
-                  ],
-                )
-
+                        ),
+                        Container(
+                          padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+                          child: Align(
+                              alignment: Alignment.topLeft,
+                              child: CircleAvatar(
+                                backgroundImage: NetworkImage(
+                                    "https://i.pinimg.com/236x/b5/0e/31/b50e311008e481dafae4be71f44f5d1f.jpg"),
+                                radius: 15,
+                              )),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),
@@ -778,12 +701,16 @@ class _Product_DetailState extends State<Product_Detail> {
                     margin: EdgeInsets.only(left: 10),
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color:Colors.grey,
+                        color: Colors.grey,
                         border: Border.all(color: Colors.black12, width: 2)),
-                    child: Icon(Icons.favorite,size: 30,color: state.data.isFavorite==false?Colors.white: Colors.red,),
+                    child: Icon(
+                      Icons.favorite,
+                      size: 30,
+                      color: Colors.white,
+
+                    ),
                   ),
-                  onTap: (){
-                        context.bloc<ProductDetailBloc>().add(FavoriteTapEvent(person_id: context.bloc<LoginBloc>().getid,product_id: state.data.id));
+                  onTap: () {
                   },
                 ),
                 GestureDetector(
@@ -802,80 +729,79 @@ class _Product_DetailState extends State<Product_Detail> {
                             color: Colors.white,
                             fontFamily: "Metropolis"),
                       ))),
-                  onTap: () {
-                    if(_currentSizeId==null|| _currentColorId ==null)
-                    {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          // return object of type Dialog
-                          return AlertDialog(
-                            title: new Text("Lưu ý!"),
-                            content: new Text(
-                                "Hãy chọn size và màu sắc trước khi thêm vào giỏ."),
-                            actions: <Widget>[
-                              // usually buttons at the bottom of the dialog
-                              new FlatButton(
-                                child: new Text("Ok"),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-
-                            ],
-                          );
-                        },
-                      );
-                    }
-                    else if (soluongtonkho < 1) {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          // return object of type Dialog
-                          return AlertDialog(
-                            title: new Text("Lưu ý!"),
-                            content: new Text(
-                                "Sản Phẩm với size và color đã chọn hiện tại không còn trong kho"),
-                            actions: <Widget>[
-                              // usually buttons at the bottom of the dialog
-                              new FlatButton(
-                                child: new Text("Ok"),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-
-                            ],
-                          );
-                        },
-                      );
-                    } else {
-
-
-                                         context.bloc<ProductDetailBloc>().add(AddtocartEvent(person_id: context.bloc<LoginBloc>().getid,product_id:context.bloc<ProductDetailBloc>().productDetail.id ,option_amount_id: option_amountId,amount: 1));
-                                         showDialog(
-                                           context: context,
-                                           builder: (BuildContext context) {
-                                             // return object of type Dialog
-                                             return AlertDialog(
-                                               title: new Text("Lưu ý!"),
-                                               content: new Text(
-                                                   "Sản Phẩm đã được thêm vào giỏ"),
-                                               actions: <Widget>[
-                                                 // usually buttons at the bottom of the dialog
-                                                 new FlatButton(
-                                                   child: new Text("Ok"),
-                                                   onPressed: () {
-                                                     Navigator.of(context).pop();
-                                                   },
-                                                 ),
-
-                                               ],
-                                             );
-                                           },
-                                         );
-                    }
-                  },
+//                  onTap: () {
+//                    if (_currentSizeId == null || _currentColorId == null) {
+//                      showDialog(
+//                        context: context,
+//                        builder: (BuildContext context) {
+//                          // return object of type Dialog
+//                          return AlertDialog(
+//                            title: new Text("Lưu ý!"),
+//                            content: new Text(
+//                                "Hãy chọn size và màu sắc trước khi thêm vào giỏ."),
+//                            actions: <Widget>[
+//                              // usually buttons at the bottom of the dialog
+//                              new FlatButton(
+//                                child: new Text("Ok"),
+//                                onPressed: () {
+//                                  Navigator.of(context).pop();
+//                                },
+//                              ),
+//                            ],
+//                          );
+//                        },
+//                      );
+//                    } else if (soluongtonkho < 1) {
+//                      showDialog(
+//                        context: context,
+//                        builder: (BuildContext context) {
+//                          // return object of type Dialog
+//                          return AlertDialog(
+//                            title: new Text("Lưu ý!"),
+//                            content: new Text(
+//                                "Sản Phẩm với size và color đã chọn hiện tại không còn trong kho"),
+//                            actions: <Widget>[
+//                              // usually buttons at the bottom of the dialog
+//                              new FlatButton(
+//                                child: new Text("Ok"),
+//                                onPressed: () {
+//                                  Navigator.of(context).pop();
+//                                },
+//                              ),
+//                            ],
+//                          );
+//                        },
+//                      );
+//                    } else {
+//                      context.bloc<ProductDetailBloc>().add(AddtocartEvent(
+//                          person_id: context.bloc<LoginBloc>().getid,
+//                          product_id: context
+//                              .bloc<ProductDetailBloc>()
+//                              .productDetail
+//                              .id,
+//                          option_amount_id: option_amountId,
+//                          amount: 1));
+//                      showDialog(
+//                        context: context,
+//                        builder: (BuildContext context) {
+//                          // return object of type Dialog
+//                          return AlertDialog(
+//                            title: new Text("Lưu ý!"),
+//                            content: new Text("Sản Phẩm đã được thêm vào giỏ"),
+//                            actions: <Widget>[
+//                              // usually buttons at the bottom of the dialog
+//                              new FlatButton(
+//                                child: new Text("Ok"),
+//                                onPressed: () {
+//                                  Navigator.of(context).pop();
+//                                },
+//                              ),
+//                            ],
+//                          );
+//                        },
+//                      );
+//                    }
+//                  },
                 ),
               ],
             ),
@@ -884,4 +810,18 @@ class _Product_DetailState extends State<Product_Detail> {
       );
     });
   }
+}
+
+double calStarRating(Rating_info rating_info) {
+  return (rating_info.star1 +
+              rating_info.star2 * 2 +
+              rating_info.star3 * 3 +
+              rating_info.star4 * 4 +
+              rating_info.star5 * 5)
+          .toDouble() /
+      (rating_info.star1 +
+          rating_info.star2 +
+          rating_info.star3 +
+          rating_info.star4 +
+          rating_info.star5);
 }

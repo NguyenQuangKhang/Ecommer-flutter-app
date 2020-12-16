@@ -17,7 +17,6 @@ class Product {
   String _imgUrl;
   String _imgUrlMob;
   int _isCertified;
-  int _isPromotion;
   int _price;
   int _promotionPercent;
   int _finalPromotionPercent;
@@ -27,7 +26,7 @@ class Product {
   int _specialPrice;
   String _trackInfo;
   int _loyaltyPrice;
-  int _percentStar;
+  double _percentStar;
   int _finalPrice;
   int _isProductInstallment;
   String _urlIconEvent;
@@ -36,7 +35,6 @@ class Product {
   int _isSenmall;
   int _productMall;
   int _totalRated;
-  List<dynamic> _iconPromote;
   String _originalPrice;
   String _minMaxPrice;
   String _minPrice;
@@ -44,13 +42,11 @@ class Product {
   int _finalPriceMax;
   int _priceMax;
   Voucher _voucher;
-  List<dynamic> _packageDelivery;
   int _score;
   int _id;
   bool _isEventFrame;
   String _promotionNote;
   bool _isConfigVariant;
-  List<dynamic> _packageDiscount;
   bool _hasMegaVoucher;
   String _uid;
   String _shopWarehouseCity;
@@ -80,7 +76,6 @@ class Product {
   String get imgUrl => _imgUrl;
   String get imgUrlMob => _imgUrlMob;
   int get isCertified => _isCertified;
-  int get isPromotion => _isPromotion;
   int get price => _price;
   int get promotionPercent => _promotionPercent;
   int get finalPromotionPercent => _finalPromotionPercent;
@@ -90,7 +85,7 @@ class Product {
   int get specialPrice => _specialPrice;
   String get trackInfo => _trackInfo;
   int get loyaltyPrice => _loyaltyPrice;
-  int get percentStar => _percentStar;
+  double get percentStar => _percentStar;
   int get finalPrice => _finalPrice;
   int get isProductInstallment => _isProductInstallment;
   String get urlIconEvent => _urlIconEvent;
@@ -99,7 +94,6 @@ class Product {
   int get isSenmall => _isSenmall;
   int get productMall => _productMall;
   int get totalRated => _totalRated;
-  List<dynamic> get iconPromote => _iconPromote;
   String get originalPrice => _originalPrice;
   String get minMaxPrice => _minMaxPrice;
   String get minPrice => _minPrice;
@@ -107,13 +101,11 @@ class Product {
   int get finalPriceMax => _finalPriceMax;
   int get priceMax => _priceMax;
   Voucher get voucher => _voucher;
-  List<dynamic> get packageDelivery => _packageDelivery;
   int get score => _score;
   int get id => _id;
   bool get isEventFrame => _isEventFrame;
   String get promotionNote => _promotionNote;
   bool get isConfigVariant => _isConfigVariant;
-  List<dynamic> get packageDiscount => _packageDiscount;
   bool get hasMegaVoucher => _hasMegaVoucher;
   String get uid => _uid;
   String get shopWarehouseCity => _shopWarehouseCity;
@@ -154,7 +146,7 @@ class Product {
       int specialPrice, 
       String trackInfo, 
       int loyaltyPrice, 
-      int percentStar, 
+      double percentStar,
       int finalPrice, 
       int isProductInstallment, 
       String urlIconEvent, 
@@ -163,7 +155,6 @@ class Product {
       int isSenmall, 
       int productMall, 
       int totalRated, 
-      List<dynamic> iconPromote, 
       String originalPrice, 
       String minMaxPrice, 
       String minPrice, 
@@ -171,13 +162,11 @@ class Product {
       int finalPriceMax, 
       int priceMax, 
       Voucher voucher, 
-      List<dynamic> packageDelivery, 
       int score, 
       int id, 
       bool isEventFrame, 
       String promotionNote, 
       bool isConfigVariant, 
-      List<dynamic> packageDiscount, 
       bool hasMegaVoucher, 
       String uid, 
       String shopWarehouseCity, 
@@ -206,7 +195,6 @@ class Product {
     _imgUrl = imgUrl;
     _imgUrlMob = imgUrlMob;
     _isCertified = isCertified;
-    _isPromotion = isPromotion;
     _price = price;
     _promotionPercent = promotionPercent;
     _finalPromotionPercent = finalPromotionPercent;
@@ -225,7 +213,6 @@ class Product {
     _isSenmall = isSenmall;
     _productMall = productMall;
     _totalRated = totalRated;
-    _iconPromote = iconPromote;
     _originalPrice = originalPrice;
     _minMaxPrice = minMaxPrice;
     _minPrice = minPrice;
@@ -233,13 +220,11 @@ class Product {
     _finalPriceMax = finalPriceMax;
     _priceMax = priceMax;
     _voucher = voucher;
-    _packageDelivery = packageDelivery;
     _score = score;
     _id = id;
     _isEventFrame = isEventFrame;
     _promotionNote = promotionNote;
     _isConfigVariant = isConfigVariant;
-    _packageDiscount = packageDiscount;
     _hasMegaVoucher = hasMegaVoucher;
     _uid = uid;
     _shopWarehouseCity = shopWarehouseCity;
@@ -271,7 +256,6 @@ class Product {
     _imgUrl = json["img_url"];
     _imgUrlMob = json["img_url_mob"];
     _isCertified = json["is_certified"];
-    _isPromotion = json["is_promotion"];
     _price = json["price"];
     _promotionPercent = json["promotion_percent"];
     _finalPromotionPercent = json["final_promotion_percent"];
@@ -281,7 +265,7 @@ class Product {
     _specialPrice = json["special_price"];
     _trackInfo = json["track_info"];
     _loyaltyPrice = json["loyalty_price"];
-    _percentStar = json["percent_star"];
+    _percentStar = json["percent_star"].toDouble();
     _finalPrice = json["final_price"];
     _isProductInstallment = json["is_product_installment"];
     _urlIconEvent = json["url_icon_event"];
@@ -290,36 +274,18 @@ class Product {
     _isSenmall = json["is_senmall"];
     _productMall = json["product_mall"];
     _totalRated = json["total_rated"];
-    if (json["icon_promote"] != null) {
-      _iconPromote = [];
-      json["icon_promote"].forEach((v) {
-        _iconPromote.add(dynamic.fromJson(v));
-      });
-    }
     _originalPrice = json["original_price"];
-    _minMaxPrice = json["min_max_price"];
-    _minPrice = json["min_price"];
+    _minMaxPrice = json["min_max_price"].toString();
+    _minPrice = json["min_price"].toString();
     _promotionPercentUpto = json["promotion_percent_upto"];
     _finalPriceMax = json["final_price_max"];
     _priceMax = json["price_max"];
     _voucher = json["voucher"] != null ? Voucher.fromJson(json["voucher"]) : null;
-    if (json["package_delivery"] != null) {
-      _packageDelivery = [];
-      json["package_delivery"].forEach((v) {
-        _packageDelivery.add(dynamic.fromJson(v));
-      });
-    }
     _score = json["score"];
     _id = json["id"];
     _isEventFrame = json["is_event_frame"];
     _promotionNote = json["promotion_note"];
     _isConfigVariant = json["is_config_variant"];
-    if (json["package_discount"] != null) {
-      _packageDiscount = [];
-      json["package_discount"].forEach((v) {
-        _packageDiscount.add(dynamic.fromJson(v));
-      });
-    }
     _hasMegaVoucher = json["has_mega_voucher"];
     _uid = json["uid"];
     _shopWarehouseCity = json["shop_warehouse_city"];
@@ -357,7 +323,6 @@ class Product {
     map["img_url"] = _imgUrl;
     map["img_url_mob"] = _imgUrlMob;
     map["is_certified"] = _isCertified;
-    map["is_promotion"] = _isPromotion;
     map["price"] = _price;
     map["promotion_percent"] = _promotionPercent;
     map["final_promotion_percent"] = _finalPromotionPercent;
@@ -376,9 +341,6 @@ class Product {
     map["is_senmall"] = _isSenmall;
     map["product_mall"] = _productMall;
     map["total_rated"] = _totalRated;
-    if (_iconPromote != null) {
-      map["icon_promote"] = _iconPromote.map((v) => v.toJson()).toList();
-    }
     map["original_price"] = _originalPrice;
     map["min_max_price"] = _minMaxPrice;
     map["min_price"] = _minPrice;
@@ -388,17 +350,11 @@ class Product {
     if (_voucher != null) {
       map["voucher"] = _voucher.toJson();
     }
-    if (_packageDelivery != null) {
-      map["package_delivery"] = _packageDelivery.map((v) => v.toJson()).toList();
-    }
     map["score"] = _score;
     map["id"] = _id;
     map["is_event_frame"] = _isEventFrame;
     map["promotion_note"] = _promotionNote;
     map["is_config_variant"] = _isConfigVariant;
-    if (_packageDiscount != null) {
-      map["package_discount"] = _packageDiscount.map((v) => v.toJson()).toList();
-    }
     map["has_mega_voucher"] = _hasMegaVoucher;
     map["uid"] = _uid;
     map["shop_warehouse_city"] = _shopWarehouseCity;

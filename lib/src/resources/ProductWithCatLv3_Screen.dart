@@ -409,7 +409,6 @@ controller: _scrollController2,
                                         ListTile(
                                           title: Text("Giá: Không sắp xếp"),
                                           onTap: () {
-
                                               value ="Giá: Không sắp xếp";
                                               context.bloc<ProductBloc>().add(FilterandSortByEvent(SortBy: 0,level_code: widget.categoryLevel2.level_code));
                                               Navigator.pop(context);
