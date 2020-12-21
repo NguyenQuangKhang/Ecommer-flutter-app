@@ -1,6 +1,13 @@
+import 'package:fashionshop/src/bloc/CategoryBloc/CategoryBloc.dart';
+import 'package:fashionshop/src/bloc/CategoryBloc/CategoryEvent.dart';
+import 'package:fashionshop/src/bloc/CategoryBloc/CategoryState.dart';
+import 'package:fashionshop/src/bloc/ProductBloc/ProductBloc.dart';
+import 'package:fashionshop/src/bloc/ProductBloc/ProductEvent.dart';
 import 'package:fashionshop/src/model/category1.dart';
+import 'package:fashionshop/src/resources/ProductWithCatLv3_Screen.dart';
 import 'package:fashionshop/src/resources/widget/category1_button.dart';
 import 'package:fashionshop/src/resources/widget/category2_dropdown.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
 List<Color> listBgColors = [
@@ -16,6 +23,14 @@ class ExploreScreenNew extends StatefulWidget {
 }
 
 class _ExploreScreenNewState extends State<ExploreScreenNew> {
+  CategoryBloc _categoryBloc;
+
+  @override
+  void initState() {
+    _categoryBloc = context.bloc<CategoryBloc>();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +46,6 @@ class _ExploreScreenNewState extends State<ExploreScreenNew> {
           ),
         ),
         textTheme: TextTheme(),
-        backgroundColor: Color(0xFF4ab3b5),
         title: Center(
           child: Text(
             "Danh mục",
@@ -39,75 +53,117 @@ class _ExploreScreenNewState extends State<ExploreScreenNew> {
           ),
         ),
       ),
-      body: Row(
-        children: <Widget>[
-          Expanded(
-            flex: 3,
-            child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return Category1Button(
-                  data: Category1(
-                      id: "",
-                      name: "asdsadsadsadsadas",
-                      url: "4367abe68722992908c1b41688926590.png"),
-                  isSelected: index == 3 ? true : false,
-                  bgColor: listBgColors[index % 3],
-                );
-              },
-            ),
-          ),
-          Expanded(
-            flex: 7,
-            child: Column(
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 5,
-                    horizontal: 10,
-                  ),
-                  color: Color(0xffEBECE9),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        "Nhà Cửa",
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        size: 20,
-                        color: Colors.black54,
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    color: listBgColors[0],
-                    padding: EdgeInsets.all(5),
+      body: BlocBuilder(
+          bloc: _categoryBloc,
+          builder: (context, state) {
+            return Stack(children: [
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    flex: 3,
                     child: ListView.builder(
+                      itemCount: _categoryBloc.list_cat_1.length,
                       itemBuilder: (context, index) {
-                        return Category2Dropdown(
-                          data: Category1(
-                            id: "",
-                            name: "asdsadsadsadsadas",
-                            url: "4367abe68722992908c1b41688926590.png",
-                          ),
+                        return Category1Button(
+                          onTap: () {
+                            _categoryBloc.indexSelected = index;
+                            _categoryBloc.add(CategoryButtonPressed(
+                                parentId: _categoryBloc.list_cat_1[index].id));
+                          },
+                          data: _categoryBloc.list_cat_1[index],
+                          isSelected: index == _categoryBloc.indexSelected
+                              ? true
+                              : false,
+                          bgColor: listBgColors[index % 3].withOpacity(0.7),
                         );
                       },
-                      itemCount: 5,
                     ),
                   ),
+                  Expanded(
+                    flex: 7,
+                    child: Column(
+                      children: <Widget>[
+                        InkWell(
+                          onTap: (){
+                            Navigator.push(context,MaterialPageRoute(
+                                builder: (context)=> BlocProvider<ProductBloc>(
+                                  create: (context){
+                                    return ProductBloc(
+
+                                    )..add(ProductByCategoryCodeEvent(categoryPath: _categoryBloc.list_cat_1[_categoryBloc.indexSelected].categoryPath));
+                                  },
+                                  child:  ProductWithSubCat_Screen(title: _categoryBloc.list_cat_1[_categoryBloc.indexSelected].name, category: _categoryBloc.list_cat_1[_categoryBloc.indexSelected]),
+                                )
+                            )
+                            );
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 5,
+                              horizontal: 10,
+                            ),
+                            color: Color(0xffEBECE9),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  _categoryBloc
+                                      .list_cat_1[_categoryBloc.indexSelected]
+                                      .name,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 20,
+                                  color: Colors.black54,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            color:
+                            listBgColors[_categoryBloc.indexSelected % 3]
+                                .withOpacity(0.7),
+                            padding: EdgeInsets.all(5),
+                            child: ListView.builder(
+                              itemBuilder: (context, index) {
+                                return Category2Dropdown(
+                                  data: _categoryBloc.sub_cat[index], onTap:(){
+                                  Navigator.push(context,MaterialPageRoute(
+                                      builder: (context)=> BlocProvider<ProductBloc>(
+                                          create: (context){
+                                            return ProductBloc(
+
+                                            )..add(ProductByCategoryCodeEvent(categoryPath: _categoryBloc.sub_cat[index].categoryPath));
+                                          },
+                                          child:  ProductWithSubCat_Screen(title: _categoryBloc.sub_cat[index].name, category: _categoryBloc.sub_cat[index]),
+                                      )
+                                  )
+                                  );
+                                },);
+                              },
+                              itemCount: _categoryBloc.sub_cat.length,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              if (state is LoadingCategory)
+                Center(
+                  child: CircularProgressIndicator(
+                    backgroundColor: Colors.greenAccent,
+                  ),
                 ),
-              ],
-            ),
-          )
-        ],
-      ),
+            ]);
+          }),
     );
   }
 }

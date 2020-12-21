@@ -1,5 +1,8 @@
 import 'package:fashionshop/src/CardView/CategoryCardWithIcon.dart';
 import 'package:fashionshop/src/CardView/ProductCard.dart';
+import 'package:fashionshop/src/bloc/GetSubCategoryBloc/GetSubCategoryBloc.dart';
+import 'package:fashionshop/src/bloc/GetSubCategoryBloc/GetSubCategoryEvent.dart';
+import 'package:fashionshop/src/bloc/GetSubCategoryBloc/GetSubCategoryState.dart';
 import 'package:fashionshop/src/bloc/Login_Bloc/LoginBloc.dart';
 import 'package:fashionshop/src/bloc/ProductBloc/ProductBloc.dart';
 import 'package:fashionshop/src/bloc/ProductBloc/ProductEvent.dart';
@@ -10,6 +13,7 @@ import 'package:fashionshop/src/bloc/SearchBloc/SearchBloc.dart';
 import 'package:fashionshop/src/model/Category.dart';
 import 'package:fashionshop/src/model/Filter.dart';
 import 'package:fashionshop/src/model/Product.dart';
+import 'package:fashionshop/src/new_model/category.dart';
 import 'package:fashionshop/src/resources/Filter_Screen.dart';
 import 'package:fashionshop/src/resources/ProductScreen.dart';
 import 'package:fashionshop/src/resources/SearchScreen.dart';
@@ -30,16 +34,16 @@ void _onWidgetDidBuild(Function() callback) {
     callback();
   });
 }
-class ProductWithCatLv3_Screen extends StatefulWidget {
+class ProductWithSubCat_Screen extends StatefulWidget {
 
   final String title;
-  final CategoryLevel2 categoryLevel2;
-  ProductWithCatLv3_Screen({@required this.title,@required this.categoryLevel2});
+  final Category category;
+  ProductWithSubCat_Screen({@required this.title,@required this.category});
   @override
-  _ProductWithCatLv3_ScreenState createState() => _ProductWithCatLv3_ScreenState();
+  _ProductWithSubCat_ScreenState createState() => _ProductWithSubCat_ScreenState();
 }
 
-class _ProductWithCatLv3_ScreenState extends State<ProductWithCatLv3_Screen> {
+class _ProductWithSubCat_ScreenState extends State<ProductWithSubCat_Screen> {
   ScrollController _scrollController= ScrollController();
   ScrollController _scrollController2=ScrollController();
   bool flag =true;
@@ -79,7 +83,7 @@ class _ProductWithCatLv3_ScreenState extends State<ProductWithCatLv3_Screen> {
               }
             else
               context.bloc<ProductBloc>().add(ProductByCategoryCodeEvent(
-                  category_code: widget.categoryLevel2.level_code));
+                  categoryPath: widget.category.categoryPath));
           }
 
 
@@ -267,80 +271,86 @@ controller: _scrollController2,
 //
 //                    ),
                   ///Danh Mục Catelv3 With Icon
-                  Center(
-                    child: Container(
-                         color: Colors.white,
-                      height: 50,
-                      width:MediaQuery.of(context).size.width ,
-                      padding: EdgeInsets.only(top: 7,bottom: 7),
-                      //margin: EdgeInsets.only(top:10,left:0,bottom: 10),
-                      child: Column(
-                        children: <Widget>[
+                  BlocProvider(
+                    create: (context) =>GetSubCategoryBloc()..add(GetSubCatInitiateEvent(parentId: widget.category.id )),
+                    child: Center(
+                      child: Container(
+                           color: Colors.white,
+                        height: 50,
+                        width:MediaQuery.of(context).size.width ,
+                        padding: EdgeInsets.only(top: 7,bottom: 7),
+                        //margin: EdgeInsets.only(top:10,left:0,bottom: 10),
+                        child: Column(
+                          children: <Widget>[
 
-                          Row(
-                            children: <Widget>[
-                              Center(
-                                child: Container(
-                                    height: 36,
-                                    width:MediaQuery.of(context).size.width,
+                            Row(
+                              children: <Widget>[
+                                Center(
+                                  child: Container(
+                                      height: 36,
+                                      width:MediaQuery.of(context).size.width,
 
-                                    child: ListView.builder(
-                                          scrollDirection: Axis.horizontal,
-                                        itemBuilder:(context,index)
-                                        {
-                                          CategoryLevel3 category= widget.categoryLevel2.listSub_cat[index];
-                                          return GestureDetector(
-                                                child: Container(
+                                      child: BlocBuilder<GetSubCategoryBloc,GetSubCategoryState>(
+                                        builder: (context,state)=> state is LoadingCategory? Center(child: CircularProgressIndicator()): ListView.builder(
+                                              scrollDirection: Axis.horizontal,
+                                            itemBuilder:(context,index)
+                                            {
+                                              Category category = context.bloc<GetSubCategoryBloc>().sub_cat[index];
 
-                                                  height: 20,
-                                                  width: 100,
-                                                  margin: index!=0?EdgeInsets.only(left: 10,top: 3,bottom: 3):EdgeInsets.only(left: 0,top:3 , bottom: 3),
-                                                  padding: EdgeInsets.only(left: 5,right: 5),
-                                                  decoration: BoxDecoration(color:Color(0xff222222),
-                                                    borderRadius: BorderRadius.circular(16),
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        color: Colors.black.withOpacity(0.5),
-                                                        spreadRadius: 1,
-                                                        blurRadius: 3,
-                                                        offset: Offset(0, 0), // changes position of shadow
+                                              return GestureDetector(
+                                                    child: Container(
+
+                                                      height: 20,
+                                                      width: 100,
+                                                      margin: index!=0?EdgeInsets.only(left: 10,top: 3,bottom: 3):EdgeInsets.only(left: 0,top:3 , bottom: 3),
+                                                      padding: EdgeInsets.only(left: 5,right: 5),
+                                                      decoration: BoxDecoration(color:Color(0xff222222),
+                                                        borderRadius: BorderRadius.circular(16),
+                                                        boxShadow: [
+                                                          BoxShadow(
+                                                            color: Colors.black.withOpacity(0.5),
+                                                            spreadRadius: 1,
+                                                            blurRadius: 3,
+                                                            offset: Offset(0, 0), // changes position of shadow
+                                                          ),
+                                                        ],
+
                                                       ),
-                                                    ],
+                                                      child: Center(child: Text(category.name,style: TextStyle(fontSize: 12,color: Colors.white,fontWeight: FontWeight.w700),textAlign: TextAlign.center,))
 
-                                                  ),
-                                                  child: Center(child: Text(category.name,style: TextStyle(fontSize: 12,color: Colors.white,fontWeight: FontWeight.w700),textAlign: TextAlign.center,))
+                                                    ),
+                                                    onTap: (){
+                                                      Navigator.push(context,MaterialPageRoute(
+                                                          builder: (context)=> BlocProvider<ProductBloc>(
+                                                              create: (context){
+                                                                return ProductBloc(
 
-                                                ),
-                                                onTap: (){
-                                                  Navigator.push(context,MaterialPageRoute(
-                                                      builder: (context)=> BlocProvider<ProductBloc>(
-                                                          create: (context){
-                                                            return ProductBloc(
-
-                                                            )..add(ProductByCategoryCodeEvent(category_code: category.level_code));
-                                                          },
-                                                          child: Products_Screen(title: category.name,level_code: category.level_code,)
+                                                                )..add(ProductByCategoryCodeEvent(categoryPath: category.categoryPath));
+                                                              },
+                                                              child: widget.category.level != 3 ? ProductWithSubCat_Screen(title: category.name, category: category): Products_Screen(title: category.name,categoryPath: category.categoryPath,)
+                                                          )
                                                       )
-                                                  )
-                                                  );
-                                                }
+                                                      );
+                                                    }
 
-                                            );
-
+                                                );
 
 
-                                        },
-                                      itemCount:widget.categoryLevel2.listSub_cat.length ,
 
-                                    )
+                                            },
+                                          itemCount:context.bloc<GetSubCategoryBloc>().sub_cat.length ,
 
+                                        ),
+                                      )
+
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                              ],
+                            ),
+                          ],
+                        ),
 
+                      ),
                     ),
                   ),
 
@@ -367,7 +377,7 @@ controller: _scrollController2,
                             Navigator.push(context,MaterialPageRoute(
                                 builder: (_)=> BlocProvider.value(
                                   value: context.bloc<ProductBloc>(),
-                                  child: Filter_Screen(category_code: widget.categoryLevel2.level_code)
+                                  child: Filter_Screen(/*category_code: widget.categoryLevel2.level_code*/  )   ///TODO
                                 )
 
                             )
@@ -390,8 +400,8 @@ controller: _scrollController2,
                                           onTap: () {
 
                                             value ="Giá: Cao -> Thấp";
-                                            context.bloc<ProductBloc>().add(FilterandSortByEvent(SortBy: -1,level_code: widget.categoryLevel2.level_code));
-                                            Navigator.pop(context);
+//                                            context.bloc<ProductBloc>().add(FilterandSortByEvent(SortBy: -1,categoryPath: widget.category.categoryPath));
+//                                            Navigator.pop(context);
                                             // context.bloc<ProductBloc>().add(ProductGetMoreDataEvent());
 
 
@@ -402,7 +412,7 @@ controller: _scrollController2,
                                           onTap: () {
 
                                               value ="Giá: Thấp -> Cao";
-                                              context.bloc<ProductBloc>().add(FilterandSortByEvent(SortBy: 1,level_code: widget.categoryLevel2.level_code));
+//                                              context.bloc<ProductBloc>().add(FilterandSortByEvent(SortBy: 1,level_code: widget.categoryLevel2.level_code));
                                               Navigator.pop(context);
                                           },
                                         ),
@@ -410,7 +420,7 @@ controller: _scrollController2,
                                           title: Text("Giá: Không sắp xếp"),
                                           onTap: () {
                                               value ="Giá: Không sắp xếp";
-                                              context.bloc<ProductBloc>().add(FilterandSortByEvent(SortBy: 0,level_code: widget.categoryLevel2.level_code));
+//                                              context.bloc<ProductBloc>().add(FilterandSortByEvent(SortBy: 0,level_code: widget.categoryLevel2.level_code));
                                               Navigator.pop(context);
 
                                           },
@@ -511,7 +521,7 @@ controller: _scrollController2,
                                                             create: (context){
                                                               return ProductDetailBloc(
 
-                                                              )..add(ProductDetailLoadEvent(id: state.data[index].id,person_id: context.bloc<LoginBloc>().id));
+                                                              )..add(ProductDetailLoadEvent(id: state.data[index].productId,person_id: context.bloc<LoginBloc>().id));
                                                             },
                                                             child: Product_Detail()
                                                         )

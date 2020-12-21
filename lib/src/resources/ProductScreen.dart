@@ -11,8 +11,8 @@ import 'Product_Detail.dart';
 
 class Products_Screen extends StatefulWidget {
   final String title;
-  final int level_code;
-  Products_Screen({@required this.title,@required this.level_code});
+  final String categoryPath;
+  Products_Screen({@required this.title,@required this.categoryPath});
   @override
   _Products_ScreenState createState() => _Products_ScreenState();
 }
@@ -27,7 +27,7 @@ class _Products_ScreenState extends State<Products_Screen> {
     _scrollController.addListener(() {
       if(_scrollController.position.pixels==_scrollController.position.maxScrollExtent) {
         context.bloc<ProductBloc>().add(
-            ProductByCategoryCodeEvent(category_code: widget.level_code));
+            ProductByCategoryCodeEvent(categoryPath: widget.categoryPath));
       }
     });
 

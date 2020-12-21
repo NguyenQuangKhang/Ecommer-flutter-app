@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:fashionshop/src/bloc/ProductDetailBloc/ProductDetailEvent.dart';
 import 'package:fashionshop/src/bloc/ProductDetailBloc/ProductDetailState.dart';
 import 'package:fashionshop/src/new_model/product_detailed.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 
@@ -16,9 +17,9 @@ class ProductDetailBloc extends Bloc<ProductDetailEvent, ProductDetailState> {
   @override
   Stream<ProductDetailState> mapEventToState(event) async* {
     if (event is ProductDetailLoadEvent) {
-      final response = await http.get("https://mapi.sendo.vn/mob/product/" +
-          event.id.toString() +
-          "/detail");
+      final response = await http.get("http://10.0.192.144:8080/api/v1/product/" +
+          event.id.toString());
+
       productDetail =ProductDetailed.fromJson(json.decode(response.body));
       yield ProductDetailShowState(data: productDetail);
     }

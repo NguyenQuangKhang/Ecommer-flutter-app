@@ -40,12 +40,12 @@ class ProductGetMoreDataEvent extends ProductEvent {
 
 class ProductByCategoryCodeEvent extends ProductEvent {
 
-final int category_code;
-const ProductByCategoryCodeEvent({@required this.category_code});
+final String categoryPath;
+const ProductByCategoryCodeEvent({@required this.categoryPath});
 
 
   @override
-  List<Object> get props => [category_code];
+  List<Object> get props => [categoryPath];
 
   @override
   String toString() =>

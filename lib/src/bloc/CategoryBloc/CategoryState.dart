@@ -9,6 +9,7 @@ abstract class CategoryState extends Equatable {
 }
 
 class LoadCategories extends CategoryState {}
+class LoadingCategory extends CategoryState {}
 
 
 class InitialState extends CategoryState {}

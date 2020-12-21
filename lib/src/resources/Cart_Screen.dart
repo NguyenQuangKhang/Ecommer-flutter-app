@@ -20,14 +20,15 @@ class CartScreen extends StatefulWidget {
   final String person_id;
 
   const CartScreen({this.person_id});
+
   @override
   _CartScreenState createState() => _CartScreenState();
 }
 
 class _CartScreenState extends State<CartScreen> {
   String Voucher = "Nhấn để chọn voucher";
-  bool chooseAll =true;
-  List<OrderItem> list_chosen=[];
+  bool chooseAll = true;
+  List<OrderItem> list_chosen = [];
 
   @override
   void initState() {
@@ -36,17 +37,14 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return BlocBuilder<CartBloc, CartState>(builder: (context, state) {
-                chooseAll =true;
-           for(int i=0;i<state.data.length;i++)
-             {
-               if(state.data[i].isChosen==false)
-                 {
-                   chooseAll=false;
-                   break;
-                 }
-             }
+      chooseAll = true;
+      for (int i = 0; i < state.data.length; i++) {
+        if (state.data[i].isChosen == false) {
+          chooseAll = false;
+          break;
+        }
+      }
 
       if (state == Initial()) return Container();
       return Scaffold(
@@ -90,22 +88,29 @@ class _CartScreenState extends State<CartScreen> {
           children: <Widget>[
             Row(
               children: <Widget>[
-                Container(height: 20,width: 30,alignment: Alignment.topCenter,
-                    margin: EdgeInsets.only(left:10,top: 5),
+                Container(
+                    height: 20,
+                    width: 30,
+                    alignment: Alignment.topCenter,
+                    margin: EdgeInsets.only(left: 10, top: 5),
                     child: Checkbox(
-                      value:chooseAll,
-                      onChanged: (value){
-                       chooseAll =value;
-                      context.bloc<CartBloc>().add(CheckAllItemCartEvent(value: value));
+                      value: chooseAll,
+                      onChanged: (value) {
+                        chooseAll = value;
+                        context
+                            .bloc<CartBloc>()
+                            .add(CheckAllItemCartEvent(value: value));
                       },
-                    )
-                ),
-                Container(height: 20,margin: EdgeInsets.only(left:0,top: 5),
-                child: Center(
-                  child: Text("Chọn tất cả",style: TextStyle(fontSize: 12,color: Colors.black),
-                  ),
-                )
-                )
+                    )),
+                Container(
+                    height: 20,
+                    margin: EdgeInsets.only(left: 0, top: 5),
+                    child: Center(
+                      child: Text(
+                        "Chọn tất cả",
+                        style: TextStyle(fontSize: 12, color: Colors.black),
+                      ),
+                    ))
               ],
             ),
             Container(
@@ -119,16 +124,21 @@ class _CartScreenState extends State<CartScreen> {
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Container(height: 30,width: 30,alignment: Alignment.topCenter,
-                      child: Checkbox(
-                        value:context.bloc<CartBloc>().list_data[index].isChosen ,
-                        onChanged: (value){
-                          chooseAll=false;
-                          context.bloc<CartBloc>().add(CheckItemCartEvent(index: index,value:value));
-                        },
-
-                      )
-                      ),
+                      Container(
+                          height: 30,
+                          width: 30,
+                          alignment: Alignment.topCenter,
+                          child: Checkbox(
+                            value: context
+                                .bloc<CartBloc>()
+                                .list_data[index]
+                                .isChosen,
+                            onChanged: (value) {
+                              chooseAll = false;
+                              context.bloc<CartBloc>().add(CheckItemCartEvent(
+                                  index: index, value: value));
+                            },
+                          )),
                       Container(
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -137,42 +147,54 @@ class _CartScreenState extends State<CartScreen> {
                         child: Stack(
                           children: <Widget>[
                             OrderItemCard(
-                              orderItem: context.bloc<CartBloc>().list_data[index],
+                              orderItem:
+                                  context.bloc<CartBloc>().list_data[index],
                               index: index,
                             ),
-                            Positioned( top: 5,right: 5 ,
-                              child:GestureDetector(child: Icon(Icons.cancel, size: 20,color: Colors.black45,),
-                              onTap: (){
-                                showDialog(
-                                  context: context,
-                                  builder: (_) {
-                                    // return object of type Dialog
-                                    return AlertDialog(
-                                      title: new Text("Lưu ý!"),
-                                      content: new Text("Bạn có chắc muốn xóa sản phẩm này không?"),
-                                      actions: <Widget>[
-                                        // usually buttons at the bottom of the dialog
-                                        new FlatButton(
-                                          child: new Text("Có"),
-                                          onPressed: () {
-
-                                            context.bloc<CartBloc>().add(DeleteCartEvent(index: index,id: ["${context.bloc<CartBloc>().list_data[index].id}"]));
-                                            Navigator.of(context).pop();
-                                          },
-                                        ),
-                                        new FlatButton(
-                                          child: new Text("Hủy"),
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                        ),
-                                      ],
+                            Positioned(
+                                top: 5,
+                                right: 5,
+                                child: GestureDetector(
+                                  child: Icon(
+                                    Icons.cancel,
+                                    size: 20,
+                                    color: Colors.black45,
+                                  ),
+                                  onTap: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (_) {
+                                        // return object of type Dialog
+                                        return AlertDialog(
+                                          title: new Text("Lưu ý!"),
+                                          content: new Text(
+                                              "Bạn có chắc muốn xóa sản phẩm này không?"),
+                                          actions: <Widget>[
+                                            // usually buttons at the bottom of the dialog
+                                            new FlatButton(
+                                              child: new Text("Có"),
+                                              onPressed: () {
+                                                context.bloc<CartBloc>().add(
+                                                        DeleteCartEvent(
+                                                            index: index,
+                                                            id: [
+                                                          "${context.bloc<CartBloc>().list_data[index].id}"
+                                                        ]));
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
+                                            new FlatButton(
+                                              child: new Text("Hủy"),
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
+                                          ],
+                                        );
+                                      },
                                     );
                                   },
-                                );
-                              },
-                              )
-                            )
+                                ))
                           ],
                         ),
                       ),
@@ -372,7 +394,8 @@ class _CartScreenState extends State<CartScreen> {
                         color: Colors.black38),
                   ),
                   Text(
-                    NumberFormat.simpleCurrency(locale: "vi").format(state.totalPrice),
+                    NumberFormat.simpleCurrency(locale: "vi")
+                        .format(state.totalPrice),
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -400,24 +423,24 @@ class _CartScreenState extends State<CartScreen> {
                 ),
               ),
               onTap: () {
-                list_chosen=[];
-                for(int i =0 ; i<state.data.length;i++)
-                  {  if(state.data[i].isChosen)
-                    list_chosen.add(state.data[i]);
-                  }
+                list_chosen = [];
+                for (int i = 0; i < state.data.length; i++) {
+                  if (state.data[i].isChosen) list_chosen.add(state.data[i]);
+                }
 //                print(list_chosen);
 
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => BlocProvider<CheckoutBloc>(
-                      create: (context){
-                        return CheckoutBloc(
-
-                        );
-                      },
-                      child: CheckOutScreen(listOrderItem: list_chosen,orderPrice: state.totalPrice,)),
-                  )
-                );
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BlocProvider<CheckoutBloc>(
+                          create: (context) {
+                            return CheckoutBloc();
+                          },
+                          child: CheckOutScreen(
+                            listOrderItem: list_chosen,
+                            orderPrice: state.totalPrice,
+                          )),
+                    ));
               },
             )
           ],

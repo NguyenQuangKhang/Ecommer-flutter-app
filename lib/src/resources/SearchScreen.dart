@@ -290,7 +290,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                                                       id: state
                                                                           .data[
                                                                               index]
-                                                                          .id,
+                                                                          .productId,
                                                                       person_id: context
                                                                           .bloc<
                                                                               LoginBloc>()

@@ -1,14 +1,18 @@
+import 'dart:convert';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fashionshop/src/model/category1.dart';
+import 'package:fashionshop/src/new_model/category.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class Category2Dropdown extends StatefulWidget {
-  final Category1 data;
-  final VoidCallback onDropdownTap;
+  final Category data;
   final VoidCallback onTap;
   final VoidCallback onTapDropdownItem;
 
-  const Category2Dropdown({this.data, this.onTap, this.onDropdownTap,this.onTapDropdownItem});
+  const Category2Dropdown({this.data, this.onTap, this.onTapDropdownItem});
 
   @override
   _Category2DropdownState createState() => _Category2DropdownState();
@@ -16,6 +20,8 @@ class Category2Dropdown extends StatefulWidget {
 
 class _Category2DropdownState extends State<Category2Dropdown> {
   bool isExpanded = false;
+  List<Category> subCat;
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +57,28 @@ class _Category2DropdownState extends State<Category2Dropdown> {
               Expanded(
                 flex: 1,
                 child: InkWell(
-                  onTap: () {
-                    setState(() {
-                      isExpanded = !isExpanded;
-                    });
+                  onTap: () async {
+                    isExpanded = !isExpanded;
+
+                    if (subCat == null) {
+                      setState(() {
+                        isLoading = true;
+                      });
+
+                      final response = await http.get(
+                          "http://10.0.192.144:8080/api/v1/categories/" +
+                              widget.data.id.toString() +
+                              "/sub-categories");
+                      subCat = json
+                          .decode(response.body)
+                          .cast<Map<String, dynamic>>()
+                          .map<Category>((json) => Category.fromJson(json))
+                          .toList();
+                      setState(() {
+                        isLoading = false;
+                      });
+                    }
+                    setState(() {});
                   },
                   child: Center(
                     child: Icon(
@@ -69,41 +93,73 @@ class _Category2DropdownState extends State<Category2Dropdown> {
           ),
         ),
         if (isExpanded)
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 5),
-            margin: EdgeInsets.only(
-              bottom: 5,
-            ),
-            child: GridView.count(
-              crossAxisCount: 3,
-              shrinkWrap: true,
-              childAspectRatio: 4/6,
-              mainAxisSpacing: 5,
-              physics: NeverScrollableScrollPhysics(),
-              crossAxisSpacing: 5,
-              children: List.generate(
-                10,
-                (index) => InkWell(
-                  onTap: widget.onTapDropdownItem,
-                  child: Column(
-                    children: <Widget>[
-                      Expanded(
-                        flex:4,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(3),
-                            color: Colors.white,
+          if (isLoading)
+            Center(
+              child: CircularProgressIndicator(
+                backgroundColor: Colors.white,
+              ),
+            )
+          else
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 5),
+              margin: EdgeInsets.only(
+                bottom: 5,
+              ),
+              child: GridView.count(
+                crossAxisCount: 3,
+                shrinkWrap: true,
+                childAspectRatio: 4 / 6,
+                mainAxisSpacing: 5,
+                physics: NeverScrollableScrollPhysics(),
+                crossAxisSpacing: 5,
+                children: List.generate(
+                  subCat.length,
+                  (index) => InkWell(
+                    onTap: widget.onTapDropdownItem,
+                    child: Column(
+                      children: <Widget>[
+                        Expanded(
+                          flex: 4,
+                          child: Container(
+                            width: 500,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(3),
+                              color: Colors.white,
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(3) ,
+                              child: CachedNetworkImage(
+                                imageUrl: subCat[index].icon,
+                                placeholder: (context, url) => Center(
+                                    child:
+                                    CircularProgressIndicator()),
+                                errorWidget:
+                                    (context, url, error) =>
+                                    Icon(Icons.error),
+                                fit: BoxFit.fill,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(height: 5,),
-                      Expanded(flex:2,child: Text(index==1?"Linh kiện và phụ kiện điện tử nhà bếp":"asdasdsad",style: TextStyle(fontSize: 10,),textAlign: TextAlign.center,),),
-                    ],
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: Text(
+                            subCat[index].name,
+                            style: TextStyle(
+                              fontSize: 10,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          )
+            )
       ],
     );
   }

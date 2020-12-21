@@ -1,5 +1,4 @@
-
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fashionshop/src/bloc/ProductDetailBloc/ProductDetailBloc.dart';
 import 'package:fashionshop/src/bloc/ProductDetailBloc/ProductDetailState.dart';
@@ -10,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
-
 
 import 'package:intl/intl.dart';
 
@@ -51,9 +49,6 @@ class _Product_DetailState extends State<Product_Detail> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    if (context.bloc<ProductDetailBloc>().productDetail != null) {
-      print(listColor);
-    }
   }
 
   @override
@@ -61,6 +56,8 @@ class _Product_DetailState extends State<Product_Detail> {
     return BlocBuilder<ProductDetailBloc, ProductDetailState>(
         builder: (context, state) {
       if (state == Initial()) return Container();
+      print(calStarRating(
+          context.bloc<ProductDetailBloc>().productDetail.ratingInfo));
       for (int i = 0;
           i < context.bloc<ProductDetailBloc>().productDetail.attribute.length;
           i++) {
@@ -150,7 +147,13 @@ class _Product_DetailState extends State<Product_Detail> {
                                     ),
                                   ],
                                 ),
-                                child: Image.network("https://media3.scdn.vn"+imgURL, fit: BoxFit.fill),
+                                child: CachedNetworkImage(
+                                    imageUrl:  imgURL,
+                                    placeholder: (context, url) =>
+                                        CircularProgressIndicator(),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
+                                    fit: BoxFit.fill),
                               );
                             },
                           );
@@ -204,9 +207,10 @@ class _Product_DetailState extends State<Product_Detail> {
                                   "Số lượng tồn kho: " +
                                       soluongtonkho.toString(),
                                   style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.redAccent,
-                                      fontSize: 14),
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.redAccent,
+                                    fontSize: 14,
+                                  ),
                                 ),
                               )
                             ],
@@ -296,7 +300,7 @@ class _Product_DetailState extends State<Product_Detail> {
                                   value: dropDownItem.optionId,
                                   child: Center(
                                       child: Text(
-                                    dropDownItem.value?? "khác",
+                                    dropDownItem.value ?? "khác",
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 12),
@@ -472,10 +476,10 @@ class _Product_DetailState extends State<Product_Detail> {
                                 alignment: Alignment.center,
                                 child: Text(
                                   "(" +
-                                      calStarRating(context
-                                          .bloc<ProductDetailBloc>()
-                                          .productDetail
-                                          .ratingInfo)
+                                      sumStarRating(context
+                                              .bloc<ProductDetailBloc>()
+                                              .productDetail
+                                              .ratingInfo)
                                           .toString() +
                                       ")",
                                   style: TextStyle(
@@ -497,9 +501,12 @@ class _Product_DetailState extends State<Product_Detail> {
                               style:
                                   TextStyle(fontSize: 14, color: Colors.black),
                             ),
-                            secondChild: Html(data:context
-                                .bloc<ProductDetailBloc>()
-                                .productDetail.description ,),
+                            secondChild: Html(
+                              data: context
+                                  .bloc<ProductDetailBloc>()
+                                  .productDetail
+                                  .description,
+                            ),
                             crossFadeState: isExpanded
                                 ? CrossFadeState.showSecond
                                 : CrossFadeState.showFirst,
@@ -535,6 +542,267 @@ class _Product_DetailState extends State<Product_Detail> {
 //                     ),
 //                 ],
 //               )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      height: 10,
+                      color: Colors.white54,
+                    ),
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Ưu đãi cho bạn",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Icon(
+                                Icons.info_outline,
+                                color: Colors.black87,
+                                size: 20,
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.local_shipping,
+                                color: Colors.green,
+                                size: 20,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                "Miễn phí vận chuyển",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      height: 10,
+                      color: Colors.white54,
+                    ),
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                "Thông tin Shop:",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 10,),
+                          Row(
+                            children: [
+                              CircleAvatar(
+                                backgroundImage: NetworkImage(
+                                    context
+                                        .bloc<ProductDetailBloc>()
+                                        .productDetail.shopInfo.shopLogo),
+                                radius: 15,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    context
+                                        .bloc<ProductDetailBloc>()
+                                        .productDetail.shopInfo.shopName,
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+
+                                  Text(context
+                                      .bloc<ProductDetailBloc>()
+                                      .productDetail.shopInfo.shopWarehouseCity,
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.black54,
+                                        fontWeight: FontWeight.w300,
+                                      ))
+                                ],
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Center(
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        "0967624699",
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        "Số điện thoại",
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          color: Colors.black54,
+                                          fontWeight: FontWeight.w300,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Center(
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        "90.45" + "%",
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        "Tỉ lệ đánh giá tốt",
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          color: Colors.black54,
+                                          fontWeight: FontWeight.w300,
+
+                                        ),
+                                        maxLines: 1,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Center(
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        "4212",
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        "Điểm tích lũy",
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          color: Colors.black54,
+                                          fontWeight: FontWeight.w300,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      height: 10,
+                      color: Colors.white54,
+                    ),
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Quyền lợi khách hàng",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Icon(
+                                Icons.info_outline,
+                                color: Colors.black87,
+                                size: 20,
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              Image.network(
+                                "https://img.icons8.com/color/2x/paid.png",
+                                height: 20,
+                                width: 20,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text("48 giờ hoàn trả"),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Row(
+                            children: [
+                              Image.network(
+                                "https://img.icons8.com/color/2x/paid.png",
+                                height: 20,
+                                width: 20,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text("Hoàn trả miễn phí"),
+                            ],
+                          ),
                         ],
                       ),
                     ),
@@ -655,8 +923,14 @@ class _Product_DetailState extends State<Product_Detail> {
                                         String image = listImage[index];
                                         return Padding(
                                             padding: EdgeInsets.only(right: 20),
-                                            child: Image.network(
-                                              "http://media3.scdn.vn"+image,
+                                            child: CachedNetworkImage(
+                                              imageUrl: image,
+                                              placeholder: (context, url) => Center(
+                                                  child:
+                                                      CircularProgressIndicator()),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      Icon(Icons.error),
                                               fit: BoxFit.fill,
                                               width: MediaQuery.of(context)
                                                       .size
@@ -700,11 +974,9 @@ class _Product_DetailState extends State<Product_Detail> {
                       Icons.favorite,
                       size: 30,
                       color: Colors.white,
-
                     ),
                   ),
-                  onTap: () {
-                  },
+                  onTap: () {},
                 ),
                 GestureDetector(
                   child: Container(
@@ -806,15 +1078,28 @@ class _Product_DetailState extends State<Product_Detail> {
 }
 
 double calStarRating(Rating_info rating_info) {
-  return (rating_info.star1 +
-              rating_info.star2 * 2 +
-              rating_info.star3 * 3 +
-              rating_info.star4 * 4 +
-              rating_info.star5 * 5)
-          .toDouble() /
-      (rating_info.star1 +
+  if ((rating_info.star1 +
           rating_info.star2 +
           rating_info.star3 +
           rating_info.star4 +
-          rating_info.star5);
+          rating_info.star5) !=
+      0)
+    return (rating_info.star1 +
+                rating_info.star2 * 2 +
+                rating_info.star3 * 3 +
+                rating_info.star4 * 4 +
+                rating_info.star5 * 5)
+            .toDouble() /
+        (rating_info.star1 +
+                rating_info.star2 +
+                rating_info.star3 +
+                rating_info.star4 +
+                rating_info.star5)
+            .toDouble();
+  else
+    return 0.0;
+}
+
+int sumStarRating(Rating_info data) {
+  return data.star1 + data.star2 + data.star3 + data.star4 + data.star5;
 }

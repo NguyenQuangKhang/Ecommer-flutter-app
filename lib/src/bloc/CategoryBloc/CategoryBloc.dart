@@ -1,82 +1,49 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:fashionshop/src/config/GraphQLConfiguration.dart';
 import 'package:fashionshop/src/graphql/QueryMutation.dart';
 import 'package:fashionshop/src/model/Category.dart';
+import 'package:fashionshop/src/new_model/category.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
+import 'package:http/http.dart' as http;
 
 import 'CategoryEvent.dart';
 import 'CategoryState.dart';
 
-
-
-
-
 GraphQLConfiguration graphQLConfiguration = GraphQLConfiguration();
+
 class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
+  List<Category> list_cat_1 = [];
+  List<Category> sub_cat = [];
 
-List<CategoryLevel1> list_cat_1 =[];
-
-
-
+  int indexSelected=0;
 
   @override
-  CategoryState get initialState => InitialState();
+  CategoryState get initialState => LoadingCategory();
 
   @override
   Stream<CategoryState> mapEventToState(
-      CategoryEvent event,
-      ) async* {
-
-    if(event is InitiateEvent)
-      {
-        GraphQLClient _client = graphQLConfiguration.clientToQuery();
-        QueryResult result = await _client.query(
-            QueryOptions(
-                documentNode: gql(GetAllCategories),
-            )
-        );
-       List<LazyCacheMap> listdata_level1 =
-      (result.data["getAllCategory"] as List<dynamic>).cast<LazyCacheMap>();
-//           print(listdata_level1[0].length);
-//        List<LazyCacheMap> listdata_level2 =
-//          (listdata_level1[0]["subCat"] as List<dynamic>).cast<LazyCacheMap>();
-//        print(listdata_level2.length);
-//        List<LazyCacheMap> listdata_level3 =
-//                (listdata_level2[0]["subCat"] as List<dynamic>).cast<LazyCacheMap>();
-//            print(listdata_level3.length);
-//        List<CategoryLevel3> list_cat_3 =[];
-//        list_cat_3.add(new CategoryLevel3("a", listdata_level3[0]["icon"]));
-
-
-
-        for(int i =0;i < listdata_level1.length;i++)
-          {
-            List<LazyCacheMap> listdata_level2 =
-          (listdata_level1[i]["subCat"] as List<dynamic>).cast<LazyCacheMap>();
-             List<CategoryLevel2> list_cat_2=[];
-            for(int j=0;j< listdata_level2.length;j++)
-              {
-                List<LazyCacheMap> listdata_level3 =
-                (listdata_level2[j]["subCat"] as List<dynamic>).cast<LazyCacheMap>();
-                List<CategoryLevel3> list_cat_3 =[];
-                for(int k=0;k<listdata_level3.length;k++)
-                  {
-                    list_cat_3.add(new CategoryLevel3(listdata_level3[k]["icon"], listdata_level3[k]["name"],listdata_level3[k]["category_code"]));
-                  }
-                list_cat_2.add(new CategoryLevel2(listdata_level2[j]["icon"],listdata_level2[j]["image"], listdata_level2[j]["name"],listdata_level2[j]["category_code"] ,list_cat_3));
-
-              }
-
-              list_cat_1.add(new CategoryLevel1(listdata_level1[i]["name"], list_cat_2));
-          }
-
-                yield LoadCategories();
-      }
+    CategoryEvent event,
+  ) async* {
+    if (event is InitiateEvent) {
+      yield LoadingCategory();
+     final response = await   http.get("http://10.0.192.144:8080/api/v1/categories?level=1");
+       list_cat_1 = json.decode(response.body).cast<Map<String,dynamic>>().map<Category>((json) => Category.fromJson(json)).toList();
+       final response2= await http.get("http://10.0.192.144:8080/api/v1/categories/"+list_cat_1[0].id.toString()+ "/sub-categories");
+       sub_cat = json.decode(response2.body).cast<Map<String,dynamic>>().map<Category>((json) => Category.fromJson(json)).toList();
+      yield LoadCategories();
 
     }
 
 
+    if(event is CategoryButtonPressed)
+      {
+        yield LoadingCategory();
+        final response = await http.get("http://10.0.192.144:8080/api/v1/categories/"+event.parentId.toString()+ "/sub-categories");
+        yield LoadCategories();
+      }
+  }
 }

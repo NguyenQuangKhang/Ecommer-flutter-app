@@ -12,6 +12,7 @@ MERGED from [:cloud_firestore_web] C:\Users\Khang\Documents\Github\Ecommer-flutt
 MERGED from [:firebase_database] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\firebase_database\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_core] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_core_web] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\firebase_core_web\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:sqflite] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:connectivity] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\connectivity\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-10:12
 MERGED from [:connectivity_macos] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\connectivity_macos\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:wakelock] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\wakelock\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
@@ -47,9 +48,9 @@ MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.12.1] C:\Users\K
 MERGED from [com.google.android.exoplayer:exoplayer-common:2.12.1] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\77fabf710cc635bbff8aa936e3c7faa2\jetified-exoplayer-common-2.12.1\AndroidManifest.xml:17:1-26:12
 MERGED from [com.google.firebase:firebase-components:16.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\ceb0798084118bda5b733637945eada4\jetified-firebase-components-16.0.0\AndroidManifest.xml:15:1-23:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\d51e0220d8e43d4bfbf3a1c4895b8a97\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:17:1-22:12
+MERGED from [io.grpc:grpc-android:1.21.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\34268753bded0b91ecc4a1af1815ce82\grpc-android-1.21.0\AndroidManifest.xml:2:1-13:12
 MERGED from [com.google.firebase:firebase-database-collection:17.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\b6af014a2c327ee5be3b6ff514bba95a\firebase-database-collection-17.0.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:protolite-well-known-types:17.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\a354eb536d40d44205558c740c860a07\protolite-well-known-types-17.0.0\AndroidManifest.xml:2:1-11:12
-MERGED from [io.grpc:grpc-android:1.21.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\34268753bded0b91ecc4a1af1815ce82\grpc-android-1.21.0\AndroidManifest.xml:2:1-13:12
 INJECTED from C:\Users\Khang\Documents\Github\Ecommer-flutter-app\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 INJECTED from C:\Users\Khang\Documents\Github\Ecommer-flutter-app\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 INJECTED from C:\Users\Khang\Documents\Github\Ecommer-flutter-app\android\app\src\debug\AndroidManifest.xml:1:1-7:12
@@ -163,6 +164,8 @@ MERGED from [:firebase_core] C:\Users\Khang\Documents\Github\Ecommer-flutter-app
 MERGED from [:firebase_core] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core_web] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\firebase_core_web\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core_web] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\firebase_core_web\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:connectivity] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\connectivity\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:connectivity] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\connectivity\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:connectivity_macos] C:\Users\Khang\Documents\Github\Ecommer-flutter-app\build\connectivity_macos\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
@@ -233,12 +236,12 @@ MERGED from [com.google.firebase:firebase-components:16.0.0] C:\Users\Khang\.gra
 MERGED from [com.google.firebase:firebase-components:16.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\ceb0798084118bda5b733637945eada4\jetified-firebase-components-16.0.0\AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\d51e0220d8e43d4bfbf3a1c4895b8a97\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\d51e0220d8e43d4bfbf3a1c4895b8a97\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
+MERGED from [io.grpc:grpc-android:1.21.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\34268753bded0b91ecc4a1af1815ce82\grpc-android-1.21.0\AndroidManifest.xml:7:5-9:41
+MERGED from [io.grpc:grpc-android:1.21.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\34268753bded0b91ecc4a1af1815ce82\grpc-android-1.21.0\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-database-collection:17.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\b6af014a2c327ee5be3b6ff514bba95a\firebase-database-collection-17.0.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-database-collection:17.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\b6af014a2c327ee5be3b6ff514bba95a\firebase-database-collection-17.0.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:protolite-well-known-types:17.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\a354eb536d40d44205558c740c860a07\protolite-well-known-types-17.0.0\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:protolite-well-known-types:17.0.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\a354eb536d40d44205558c740c860a07\protolite-well-known-types-17.0.0\AndroidManifest.xml:7:5-9:41
-MERGED from [io.grpc:grpc-android:1.21.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\34268753bded0b91ecc4a1af1815ce82\grpc-android-1.21.0\AndroidManifest.xml:7:5-9:41
-MERGED from [io.grpc:grpc-android:1.21.0] C:\Users\Khang\.gradle\caches\transforms-2\files-2.1\34268753bded0b91ecc4a1af1815ce82\grpc-android-1.21.0\AndroidManifest.xml:7:5-9:41
 INJECTED from C:\Users\Khang\Documents\Github\Ecommer-flutter-app\android\app\src\debug\AndroidManifest.xml
 INJECTED from C:\Users\Khang\Documents\Github\Ecommer-flutter-app\android\app\src\debug\AndroidManifest.xml
 	android:targetSdkVersion
