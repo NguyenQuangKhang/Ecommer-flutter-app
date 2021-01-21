@@ -1,10 +1,14 @@
 import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fashionshop/src/bloc/ProductBloc/ProductBloc.dart';
+import 'package:fashionshop/src/bloc/ProductBloc/ProductEvent.dart';
 import 'package:fashionshop/src/model/category1.dart';
 import 'package:fashionshop/src/new_model/category.dart';
+import 'package:fashionshop/src/resources/ProductScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 
 class Category2Dropdown extends StatefulWidget {
@@ -66,7 +70,7 @@ class _Category2DropdownState extends State<Category2Dropdown> {
                       });
 
                       final response = await http.get(
-                          "http://192.168.1.227/:8080/api/v1/categories/" +
+                          "http://192.168.1.227:8080/api/v1/categories/" +
                               widget.data.id.toString() +
                               "/sub-categories");
                       subCat = json
@@ -74,6 +78,7 @@ class _Category2DropdownState extends State<Category2Dropdown> {
                           .cast<Map<String, dynamic>>()
                           .map<Category>((json) => Category.fromJson(json))
                           .toList();
+
                       setState(() {
                         isLoading = false;
                       });
@@ -115,7 +120,19 @@ class _Category2DropdownState extends State<Category2Dropdown> {
                 children: List.generate(
                   subCat.length,
                   (index) => InkWell(
-                    onTap: widget.onTapDropdownItem,
+                    onTap: (){
+                      Navigator.push(context,MaterialPageRoute(
+                          builder: (context)=> BlocProvider<ProductBloc>(
+                            create: (context){
+                              return ProductBloc(
+
+                              )..add(ProductByCategoryCodeEvent(categoryPath: subCat[index].categoryPath));
+                            },
+                            child:  Products_Screen(title: subCat[index].name, categoryPath: subCat[index].categoryPath),
+                          )
+                      )
+                      );
+                    },
                     child: Column(
                       children: <Widget>[
                         Expanded(
@@ -127,14 +144,12 @@ class _Category2DropdownState extends State<Category2Dropdown> {
                               color: Colors.white,
                             ),
                             child: ClipRRect(
-                              borderRadius: BorderRadius.circular(3) ,
+                              borderRadius: BorderRadius.circular(3),
                               child: CachedNetworkImage(
-                                imageUrl: subCat[index].icon,
-                                placeholder: (context, url) => Center(
-                                    child:
-                                    CircularProgressIndicator()),
-                                errorWidget:
-                                    (context, url, error) =>
+                                imageUrl: subCat[index].icon?? "https://www.clipartmax.com/png/middle/196-1960684_jewelry-category-icon-bracelet-comments-jewelry-icon-png.png",
+                                placeholder: (context, url) =>
+                                    Center(child: CircularProgressIndicator()),
+                                errorWidget: (context, url, error) =>
                                     Icon(Icons.error),
                                 fit: BoxFit.fill,
                               ),

@@ -43,6 +43,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
       {
         yield LoadingCategory();
         final response = await http.get("http://192.168.1.227:8080/api/v1/categories/"+event.parentId.toString()+ "/sub-categories");
+        sub_cat = json.decode(response.body).cast<Map<String,dynamic>>().map<Category>((json) => Category.fromJson(json)).toList();
         yield LoadCategories();
       }
   }

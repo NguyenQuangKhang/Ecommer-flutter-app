@@ -145,7 +145,8 @@ class _ExploreScreenNewState extends State<ExploreScreenNew> {
                                       )
                                   )
                                   );
-                                },);
+                                },
+                                );
                               },
                               itemCount: _categoryBloc.sub_cat.length,
                             ),

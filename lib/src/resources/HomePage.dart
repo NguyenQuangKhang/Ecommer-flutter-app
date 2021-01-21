@@ -416,6 +416,17 @@ class _HomePageState extends State<HomePage> {
                                             ),
                                           ),
                                           onTap: () {
+                                            Navigator.push(context,MaterialPageRoute(
+                                                builder: (context)=> BlocProvider<ProductBloc>(
+                                                  create: (context){
+                                                    return ProductBloc(
+
+                                                    )..add(ProductByCategoryCodeEvent(categoryPath: category.categoryPath));
+                                                  },
+                                                  child:  ProductWithSubCat_Screen(title: category.name, category: category),
+                                                )
+                                            )
+                                            );
 //                                            Navigator.push(
 //                                                context,
 //                                                MaterialPageRoute(

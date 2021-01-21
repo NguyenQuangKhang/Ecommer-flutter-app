@@ -19,27 +19,28 @@ class Category1Button extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Image.network(
-                data.icon,
-              width: 30,
-              height: 30,
-              color: isSelected?Colors.red: Colors.black54,
+            Expanded(
+              flex: 1,
+              child: Image.network(
+               data.icon,
+                color: isSelected?Colors.red: Colors.black54,
+              ),
             ),
 
             SizedBox(
               height: 10,
             ),
-            Text(
+            Expanded(
+              flex: 1,
+              child: Text(
           data.name,
-              style: TextStyle(
-                color: isSelected?Colors.black:Colors.black54,
-                fontSize: 10,
+                style: TextStyle(
+                  color: isSelected?Colors.black:Colors.black54,
+                  fontSize: 10,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
             ),
-           Expanded(
-             child: SizedBox(),
-           ),
            if(!isSelected) Container(
               height: 1,
               color: Colors.black45,
