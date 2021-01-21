@@ -512,7 +512,7 @@ controller: _scrollController2,
 
                                           ),
                                           onTap: (){
-                                            print(context.bloc<LoginBloc>().id);
+                                            print(context.bloc<LoginBloc>().user.id.toString());
                                     Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
@@ -521,7 +521,7 @@ controller: _scrollController2,
                                                             create: (context){
                                                               return ProductDetailBloc(
 
-                                                              )..add(ProductDetailLoadEvent(id: state.data[index].productId,person_id: context.bloc<LoginBloc>().id));
+                                                              )..add(ProductDetailLoadEvent(id: state.data[index].productId,person_id: context.bloc<LoginBloc>().user.id.toString()));
                                                             },
                                                             child: Product_Detail()
                                                         )

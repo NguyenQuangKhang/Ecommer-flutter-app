@@ -1,8 +1,8 @@
 //
 //import 'package:fashionshop/src/bloc/CategoryBloc/GetSubCategoryBloc.dart';
 //import 'package:fashionshop/src/bloc/CategoryBloc/GetSubCategoryState.dart';
-//import 'package:fashionshop/src/bloc/ProductBloc/ProductBloc.dart';
-//import 'package:fashionshop/src/bloc/ProductBloc/ProductEvent.dart';
+//import 'package:fashionshop/src/bloc/ProductBloc/RecommendProductBloc.dart';
+//import 'package:fashionshop/src/bloc/ProductBloc/RecommendProductEvent.dart';
 //import 'package:fashionshop/src/model/Category.dart';
 //import 'package:fashionshop/src/resources/ProductWithCatLv3_Screen.dart';
 //import 'package:flutter/cupertino.dart';

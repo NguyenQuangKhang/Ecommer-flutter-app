@@ -9,13 +9,15 @@ import 'package:smooth_star_rating/smooth_star_rating.dart';
 class ProductCard extends StatelessWidget {
   final Product product;
   final int index;
-  ProductCard({this.product,this.index});
+   final double height;
+   final double width;
+  ProductCard({this.product,this.index,this.height ,this.width});
   @override
   Widget build(BuildContext context) {
     return Container(
 
-      width: MediaQuery.of(context).size.width/2,
-      height: MediaQuery.of(context).size.height/3+20,
+      width: width==null? MediaQuery.of(context).size.width/2 : width,
+      height: height==null?MediaQuery.of(context).size.height/3+20: height,
       decoration: BoxDecoration(
         backgroundBlendMode: BlendMode.colorBurn,
         color: Colors.white,
@@ -34,8 +36,8 @@ class ProductCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.only(topRight: Radius.circular(8),topLeft: Radius.circular(8)),
               child: Image.network(product.imgUrl !=null?product.imgUrl:"https://cdn.tgdd.vn/comment/34134321/58595582_1405843519557852_4325264661025914880_n-20190424085228.jpg",fit: BoxFit.fill,
-                width: MediaQuery.of(context).size.width/2,
-                height: MediaQuery.of(context).size.height/3-80,
+                width: width==null? MediaQuery.of(context).size.width/2 : width,
+                height: height==null?MediaQuery.of(context).size.height/3-80 : height-120,
 
                 colorBlendMode: BlendMode.darken,
               )

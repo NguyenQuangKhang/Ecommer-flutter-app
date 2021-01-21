@@ -32,7 +32,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductsState> {
       currentPage = 1;
       listdata = [];
       yield Loading(sortBy: state.sortBy, error: null, filterRules: null, data: listdata);
-       final response = await http.get("http://10.0.192.144:8080/api/v1/cat/thoi-trang-nu/products?p=" + currentPage.toString());
+       final response = await http.get("http://192.168.1.227:8080/api/v1/cat/thoi-trang-nu/products?p=" + currentPage.toString());
        print(response.body);
        listdata=  json.decode(response.body).cast<Map<String,dynamic>>().map<Product>((json) => Product.fromJson(json)).toList();
        print(listdata);
@@ -94,7 +94,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductsState> {
           error: state.error,
           filterRules: state.filterRules,
           data: state.data);
-      final response = await http.get("http://10.0.192.144:8080/api/v1/cat/"+event.categoryPath+"/products?p="+currentPageByCateGory.toString());
+      final response = await http.get("http://10.0.3.2:8080/api/v1/cat/"+event.categoryPath+"/products?p="+currentPageByCateGory.toString());
       listdataByCategory= json.decode(response.body).cast<Map<String,dynamic>>().map<Product>((json) => Product.fromJson(json)).toList();
 //      QueryResult result = await _client.query(
 //          QueryOptions(documentNode: gql(getProductByCategory), variables: {

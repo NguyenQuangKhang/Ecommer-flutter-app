@@ -294,7 +294,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                                                       person_id: context
                                                                           .bloc<
                                                                               LoginBloc>()
-                                                                          .id));
+                                                                          .user.id.toString()));
                                                               },
                                                               child:
                                                                   Product_Detail())));

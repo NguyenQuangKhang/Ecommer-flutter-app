@@ -30,9 +30,9 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
   ) async* {
     if (event is InitiateEvent) {
       yield LoadingCategory();
-     final response = await   http.get("http://10.0.192.144:8080/api/v1/categories?level=1");
+     final response = await   http.get("http://192.168.1.227:8080/api/v1/categories?level=1");
        list_cat_1 = json.decode(response.body).cast<Map<String,dynamic>>().map<Category>((json) => Category.fromJson(json)).toList();
-       final response2= await http.get("http://10.0.192.144:8080/api/v1/categories/"+list_cat_1[0].id.toString()+ "/sub-categories");
+       final response2= await http.get("http://192.168.1.227:8080/api/v1/categories/"+list_cat_1[0].id.toString()+ "/sub-categories");
        sub_cat = json.decode(response2.body).cast<Map<String,dynamic>>().map<Category>((json) => Category.fromJson(json)).toList();
       yield LoadCategories();
 
@@ -42,7 +42,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     if(event is CategoryButtonPressed)
       {
         yield LoadingCategory();
-        final response = await http.get("http://10.0.192.144:8080/api/v1/categories/"+event.parentId.toString()+ "/sub-categories");
+        final response = await http.get("http://192.168.1.227:8080/api/v1/categories/"+event.parentId.toString()+ "/sub-categories");
         yield LoadCategories();
       }
   }

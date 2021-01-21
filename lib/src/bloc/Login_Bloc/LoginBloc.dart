@@ -1,48 +1,20 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:fashionshop/src/config/GraphQLConfiguration.dart';
 import 'package:fashionshop/src/graphql/QueryMutation.dart';
+import 'package:fashionshop/src/model/user.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
-
+import 'package:http/http.dart' as http;
 import 'LoginEvent.dart';
 import 'LoginState.dart';
 
 GraphQLConfiguration graphQLConfiguration = GraphQLConfiguration();
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  String id;
-
-  String get getid => id;
-  String name;
-
-  String get getName => name;
-  String avatar;
-
-  String get getAvatar => avatar;
-  String sex;
-
-  String get getSex => sex;
-  String numberPhone;
-
-  String get getNumberphone => numberPhone;
-  String email;
-
-  String get getEmail => email;
-  String birthday;
-
-  String get getBirthday => birthday;
-  List<String> shippingAddress;
-
-  List<String> get getShippingAddress => shippingAddress;
-  String password;
-
-  String get getPassword => password;
-  String token;
-
-  String get getToken => token;
-  GraphQLClient _client = graphQLConfiguration.clientToQuery();
+  User user;
 
   @override
   LoginState get initialState => LoginInitial();
@@ -53,36 +25,31 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   ) async* {
     if (event is LoginButtonPressed) {
       yield LoginLoading();
-      try {
-        QueryResult result = await _client
-            .query(QueryOptions(documentNode: gql(Login), variables: {
-          "email": event.username,
-          "password": event.password,
-        }));
-        // if đúng thì yeild LoginOk else failure
-        if (!result.hasException) {
-          token = result.data['login']['token'];
-          name = result.data['login']['account']['person']['name'];
-          email = event.username;
-          password = event.password;
-          id = result.data['login']['account']['person']['_id'];
-          avatar = result.data['login']['account']['person']['avatar'];
-          numberPhone = result.data['login']['account']['person']['number_phone'];
-          birthday = result.data['login']['account']['person']['birthday'];
-          shippingAddress = (result.data['login']['account']['person']['shipping_address'] as List<dynamic>).cast<String>();
 
-          sex = result.data['login']['account']['person']['sex'];
+        final response = await http.post(
+          "http://192.168.1.227:8080/api/v1/account/login",
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(<String, String>{
+            "username": event.username,
+            "password": event.password,
+          }),
+        );
 
+        if (response.statusCode == 200) {
+          user = User.fromJson(json.decode(response.body)["user"]);
+          print(" userid: " + user.id.toString());
           yield LoginOk();
         } else {
           yield LoginInitial();
 
-          yield LoginFailure(error: result.exception.toString());
+          yield LoginFailure(error: "login failed");
         }
-      } catch (error) {
-        yield LoginInitial();
-        yield LoginFailure(error: error.toString());
-      }
+//      } catch (error) {
+//        yield LoginInitial();
+//        yield LoginFailure(error: error.toString());
+//      }
     }
   }
 }

@@ -3,12 +3,15 @@ import 'package:fashionshop/src/bloc/Login_Bloc/LoginEvent.dart';
 import 'package:fashionshop/src/bloc/Login_Bloc/LoginState.dart';
 import 'package:fashionshop/src/bloc/ProductBloc/ProductBloc.dart';
 import 'package:fashionshop/src/bloc/ProductBloc/ProductEvent.dart';
+import 'package:fashionshop/src/bloc/RecommendProductBloc/RecommendProductBloc.dart';
+import 'package:fashionshop/src/bloc/RecommendProductBloc/RecommendProductEvent.dart';
 import 'package:fashionshop/src/config/GraphQLConfiguration.dart';
 import 'package:fashionshop/src/graphql/QueryMutation.dart';
 import 'package:fashionshop/src/resources/ExploreScreen.dart';
 import 'package:fashionshop/src/resources/HomePage.dart';
 import 'package:fashionshop/src/resources/HomeScreen.dart';
 import 'package:fashionshop/src/resources/ProductScreen.dart';
+import 'package:fashionshop/src/resources/ProfileScreen.dart';
 import 'package:fashionshop/src/resources/RegisterScreen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -24,11 +27,11 @@ class LoginScreen extends StatefulWidget {
 
 class LoginScreenState extends State<LoginScreen> {
   GraphQLClient _client = graphQLConfiguration.clientToQuery();
-  TextEditingController txt_email = TextEditingController(text: "admin@123.gmail.com");
-  TextEditingController txt_password = TextEditingController(text: "admin@123");
+  TextEditingController txt_email = TextEditingController(text: "46980");
+  TextEditingController txt_password = TextEditingController(text: "123456");
 
   Widget build(BuildContext context) {
-    LoginBloc loginBloc = context.bloc<LoginBloc>();
+
 
     final _formKey = GlobalKey<FormState>();
     return BlocBuilder<LoginBloc, LoginState>(
@@ -41,8 +44,8 @@ class LoginScreenState extends State<LoginScreen> {
               });
             }
             if (state is LoginOk) {
-
-              return HomeScreen(Myname: context.bloc<LoginBloc>().getName);
+              context.bloc<RecommendProductBloc>().add(RecommendProductLoadEvent(userId: context.bloc<LoginBloc>().user.id));
+              return ProfileScreen();
 
             }
             if(state is LoginLoading) {
@@ -100,11 +103,11 @@ class LoginScreenState extends State<LoginScreen> {
                               if (value.isEmpty) {
                                 return 'Không được để trống phần này';
                               }
-                              Pattern pattern =
-                                  r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                              RegExp regex = new RegExp(pattern);
-
-                              if(!regex.hasMatch(value)) return 'Tên email không đúng cấu trúc';
+//                              Pattern pattern =
+//                                  r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+//                              RegExp regex = new RegExp(pattern);
+//
+//                              if(!regex.hasMatch(value)) return 'Tên email không đúng cấu trúc';
                               return null;
                             },
                             onChanged: (value)
@@ -171,7 +174,7 @@ class LoginScreenState extends State<LoginScreen> {
                           child: RaisedButton(
                             onPressed: (){
                               if(_formKey.currentState.validate())
-                             loginBloc.add(LoginButtonPressed(username: txt_email.text,password: txt_password.text));
+                             context.bloc<LoginBloc>().add(LoginButtonPressed(username: txt_email.text,password: txt_password.text));
                             },
 //                          onPressed: () async {
 //                            QueryResult result = await _client.query(

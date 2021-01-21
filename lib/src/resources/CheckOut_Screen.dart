@@ -16,7 +16,7 @@ import 'PaymentMethod_Screen.dart';
 class CheckOutScreen extends StatefulWidget {
   final List<OrderItem> listOrderItem;
   final int orderPrice;
-  List<String> listId=[];
+  List<String> listId = [];
 
   CheckOutScreen({this.listOrderItem, this.orderPrice});
 
@@ -25,13 +25,11 @@ class CheckOutScreen extends StatefulWidget {
 }
 
 class _CheckOutScreenState extends State<CheckOutScreen> {
-
   @override
   Widget build(BuildContext context) {
-    for(int i =0;i<widget.listOrderItem.length;i++)
-      {
-        widget.listId.add(widget.listOrderItem[i].id);
-      }
+    for (int i = 0; i < widget.listOrderItem.length; i++) {
+      widget.listId.add(widget.listOrderItem[i].id);
+    }
     return BlocBuilder<CheckoutBloc, CheckoutState>(builder: (context, state) {
       return Scaffold(
           appBar: AppBar(
@@ -401,40 +399,46 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                             GestureDetector(
                               onTap: () {
                                 context.bloc<CheckoutBloc>().add(
-                                    OrderClickEvent(
-                                        person_id:
-                                            context.bloc<LoginBloc>().getid,
+                                      OrderClickEvent(
+                                        person_id: context
+                                            .bloc<LoginBloc>()
+                                            .user
+                                            .id
+                                            .toString(),
                                         totalPrice: widget.orderPrice + 30000,
                                         address: "Ktx Khu B- DHQG Tp.Hcm",
                                         carts: widget.listId,
-                                        methodPayment: "Thanh toán khi nhận hàng",
-                                        priceShip: 30000));
+                                        methodPayment:
+                                            "Thanh toán khi nhận hàng",
+                                        priceShip: 30000,
+                                      ),
+                                    );
                                 showDialog(
                                   context: context,
                                   builder: (_) {
                                     // return object of type Dialog
                                     return AlertDialog(
                                       title: new Text("Thông báo!"),
-                                      content: new Text(state.error==null?"Đặt hàng thành công!":state.error),
+                                      content: new Text(state.error == null
+                                          ? "Đặt hàng thành công!"
+                                          : state.error),
                                       actions: <Widget>[
                                         // usually buttons at the bottom of the dialog
                                         new FlatButton(
                                           child: new Text("Ok"),
                                           onPressed: () {
-                                               if(state.error==null)
-                                                 {
-                                                   Navigator.push(
-                                                     context,
-                                                     MaterialPageRoute(builder: (context) => HomeScreen()),
-                                                   );
-                                                 }
-                                               else
-                                                 Navigator.pop(context);
+                                            if (state.error == null) {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        HomeScreen()),
+                                              );
+                                            } else
+                                              Navigator.pop(context);
                                             //context.bloc<CartBloc>().add(DeleteCartEvent(index: index,id: ["${context.bloc<CartBloc>().list_data[index].id}"]));
-
                                           },
                                         ),
-
                                       ],
                                     );
                                   },

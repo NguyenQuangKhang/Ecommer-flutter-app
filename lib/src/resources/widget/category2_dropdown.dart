@@ -66,7 +66,7 @@ class _Category2DropdownState extends State<Category2Dropdown> {
                       });
 
                       final response = await http.get(
-                          "http://10.0.192.144:8080/api/v1/categories/" +
+                          "http://192.168.1.227/:8080/api/v1/categories/" +
                               widget.data.id.toString() +
                               "/sub-categories");
                       subCat = json

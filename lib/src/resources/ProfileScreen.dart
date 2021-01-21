@@ -20,7 +20,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
         backgroundColor: Color(0xFF4ab3b5),
         title: Text(
-          "Profile",
+          "Thông tin",
           style: TextStyle(color: Colors.white),
         ),
       ),
@@ -28,8 +28,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         children: <Widget>[
           Info(
             image: "assets/Avarta.png",
-            name: "Quang Khang",
-            email: "quangkhang20899@gmail.com",
+            name: context.bloc<LoginBloc>().user.name,
+            email: context.bloc<LoginBloc>().user.email ?? "",
           ),
 
           Container(
@@ -63,7 +63,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           create: (context){
                             return MyOrderBloc(
 
-                            )..add(InitiateEvent(person_id: context.bloc<LoginBloc>().getid));
+                            )..add(InitiateEvent(person_id: context.bloc<LoginBloc>().user.id.toString()));
                           },
                           child: MyOrder_Screen()
                       )

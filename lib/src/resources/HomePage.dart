@@ -9,6 +9,9 @@ import 'package:fashionshop/src/bloc/ProductBloc/ProductEvent.dart';
 import 'package:fashionshop/src/bloc/ProductBloc/ProductState.dart';
 import 'package:fashionshop/src/bloc/ProductDetailBloc/ProductDetailBloc.dart';
 import 'package:fashionshop/src/bloc/ProductDetailBloc/ProductDetailEvent.dart';
+import 'package:fashionshop/src/bloc/RecommendProductBloc/RecommendProductBloc.dart';
+import 'package:fashionshop/src/bloc/RecommendProductBloc/RecommendProductEvent.dart';
+import 'package:fashionshop/src/bloc/RecommendProductBloc/RecommendProductState.dart';
 import 'package:fashionshop/src/bloc/SearchBloc/SearchBloc.dart';
 import 'package:fashionshop/src/config/GraphQLConfiguration.dart';
 import 'package:fashionshop/src/graphql/QueryMutation.dart';
@@ -100,6 +103,7 @@ class _HomePageState extends State<HomePage> {
     }
     return result;
   }
+  RecommendProductBloc recommendProductBloc;
 
   ScrollController _scrollController = ScrollController();
   ScrollController _scrollController2 = ScrollController();
@@ -109,6 +113,10 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     //LoadCategory();
+    context.bloc<RecommendProductBloc>()
+      ..add(RecommendProductLoadEvent(
+          userId:
+          context.bloc<LoginBloc>().user?.id ?? 0));
     print("Reload");
     _scrollController2.addListener(() {
       if (_scrollController2.position.pixels ==
@@ -199,7 +207,7 @@ class _HomePageState extends State<HomePage> {
                   scrollDirection: Axis.vertical,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       SizedBox(
                         height: 10,
@@ -230,7 +238,9 @@ class _HomePageState extends State<HomePage> {
                                   imageUrl: imgURL,
                                   fit: BoxFit.fill,
                                   placeholder: (context, url) => Center(
-                                    child: Center(child: CircularProgressIndicator(),),
+                                    child: Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
                                   ),
                                 ),
                               );
@@ -260,9 +270,12 @@ class _HomePageState extends State<HomePage> {
                             );
                           })),
 
-                      SizedBox(
-                        height: 10.0,
+                      Container(
+                        height: 5,
+                        margin: EdgeInsets.symmetric(vertical: 5),
+                        color: Color(0xffE7E7E7),
                       ),
+
                       Container(
                         color: Colors.white,
                         padding: EdgeInsets.only(left: 10, right: 5),
@@ -270,12 +283,12 @@ class _HomePageState extends State<HomePage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
-                              "Category",
+                              "Danh mục",
                               style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.black,
+                                  fontSize: 16,
+                                  color: Colors.pinkAccent,
                                   fontWeight: FontWeight.w500,
-                                  fontFamily: "Arial"),
+                                  fontFamily: "Tahoma"),
                             ),
                             GestureDetector(
                               child: Padding(
@@ -284,9 +297,9 @@ class _HomePageState extends State<HomePage> {
                                   "See more",
                                   style: TextStyle(
                                       color: Color(0xff3A1DEC),
-                                      fontSize: 15,
+                                      fontSize: 14,
                                       fontWeight: FontWeight.bold,
-                                      fontFamily: "Arial"),
+                                      fontFamily: "Tahoma"),
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -294,10 +307,9 @@ class _HomePageState extends State<HomePage> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (_) =>
-                                            BlocProvider.value(
-                                              value: context.bloc<CategoryBloc>(),
-                                                child: ExploreScreenNew())));
+                                        builder: (_) => BlocProvider.value(
+                                            value: context.bloc<CategoryBloc>(),
+                                            child: ExploreScreenNew())));
                               },
                             )
                           ],
@@ -368,17 +380,21 @@ class _HomePageState extends State<HomePage> {
                                                         BorderRadius.circular(
                                                             25),
                                                     child: CachedNetworkImage(
-                                                      imageUrl: category.icon != null
+                                                      imageUrl: category.icon !=
+                                                              null
                                                           ? category.icon
                                                           : "https://i.pinimg.com/236x/30/87/8d/30878dc76c22265aa23b6c0328886113.jpg",
-                                                      placeholder: (context, url) => CircularProgressIndicator(),
-                                                      errorWidget: (context, url, error) => Icon(Icons.error),
+                                                      placeholder: (context,
+                                                              url) =>
+                                                          CircularProgressIndicator(),
+                                                      errorWidget: (context,
+                                                              url, error) =>
+                                                          Icon(Icons.error),
                                                       fit: BoxFit.fill,
                                                       width: 25,
                                                       height: 25,
                                                       colorBlendMode:
                                                           BlendMode.colorBurn,
-
                                                     ),
                                                   )),
                                                 ),
@@ -426,10 +442,97 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
 
-                      SizedBox(
-                        height: 15.0,
+                      Container(
+                        height: 5,
+                        margin: EdgeInsets.symmetric(vertical: 5),
+                        color: Color(0xffE7E7E7),
                       ),
 
+                      Container(
+                        color: Colors.white,
+                        padding: EdgeInsets.only(left: 10, right: 5),
+                        child: Text(
+                          "Gợi ý cho bạn",
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.pinkAccent,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: "Tahoma"),
+                          textAlign: TextAlign.start,
+                        ),
+                      ),
+
+                      BlocBuilder(
+                          bloc: recommendProductBloc,
+                          builder: (context, state) {
+                            if (state is RecommendProductSuccess)
+                              return Container(
+                                  width: MediaQuery.of(context).size.width,
+                                 height:MediaQuery.of(context).size.height/3 +22+10 ,
+                                  child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return Container(
+                                        margin: index != context
+                                            .bloc<RecommendProductBloc>()
+                                            .data
+                                            .length-1 ?EdgeInsets.only(right: 10,left: 10,bottom: 5,top: 5): EdgeInsets.only(bottom: 5,top: 5,left: 10,right: 10),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          backgroundBlendMode:
+                                          BlendMode.colorBurn,
+                                          borderRadius:
+                                          BorderRadius.circular(8),
+                                          border: Border.all(
+                                              color: Colors.white),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey
+                                                  ,
+                                              spreadRadius: 2,
+                                              blurRadius: 4,
+                                              offset: Offset(0,
+                                                  0), // changes position of shadow
+                                            ),
+                                          ],
+                                        ),
+                                        child: ProductCard(
+                                          product: context
+                                              .bloc<RecommendProductBloc>()
+                                              .data[index],
+                                          height: MediaQuery.of(context).size.height/3,
+                                          width: MediaQuery.of(context).size.width/2-20,
+                                        ),
+                                      );
+                                    },
+                                    itemCount: context
+                                        .bloc<RecommendProductBloc>()
+                                        .data
+                                        .length,
+
+                                  ));
+                            if (state is RecommendProductFailure)
+                              return Center(
+                                child: Text(
+                                  state.error,
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              );
+                            return Center(
+                                child: CircularProgressIndicator(
+                              backgroundColor: Colors.black54,
+                            ));
+                          }),
+
+//                      Container(
+//                        height: 5,
+//                        margin: EdgeInsets.symmetric(vertical: 5),
+//                        color: Color(0xffE7E7E7),
+//                      ),
                       Container(
                         margin: EdgeInsets.only(right: 2, left: 2, bottom: 5),
                         padding: EdgeInsets.only(bottom: 4),
@@ -646,7 +749,9 @@ class _HomePageState extends State<HomePage> {
                                                                             .productId,
                                                                         person_id: context
                                                                             .bloc<LoginBloc>()
-                                                                            .id));
+                                                                            .user
+                                                                            .id
+                                                                            .toString()));
                                                                 },
                                                                 child:
                                                                     Product_Detail())));

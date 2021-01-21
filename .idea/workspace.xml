@@ -2,58 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e6f5e8f-5aa3-4ac4-8dd4-21bd6bbc4be5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/src/bloc/GetSubCategoryBloc/GetSubCategoryBloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/src/bloc/GetSubCategoryBloc/GetSubCategoryEvent.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/src/bloc/GetSubCategoryBloc/GetSubCategoryState.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/src/new_model/category.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/bloc/RecommendProductBloc/RecommendProductBloc.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/bloc/RecommendProductBloc/RecommendProductEvent.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/bloc/RecommendProductBloc/RecommendProductState.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/src/model/user.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/dex/debug/mergeExtDexDebug/out/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/dex/debug/mergeExtDexDebug/out/classes.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/dex/debug/mergeExtDexDebug/out/classes2.dex" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/dex/debug/mergeExtDexDebug/out/classes2.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/dex/debug/mergeLibDexDebug/out/classes_10.dex" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/dex/debug/mergeLibDexDebug/out/classes_10.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/dex/debug/mergeLibDexDebug/out/classes_7.dex" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/dex/debug/mergeLibDexDebug/out/classes_7.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/dex/debug/mergeLibDexDebug/out/classes_8.dex" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/dex/debug/mergeLibDexDebug/out/classes_8.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/dex/debug/mergeLibDexDebug/out/classes_9.dex" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/dex/debug/mergeLibDexDebug/out/classes_9.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/dex/debug/mergeProjectDexDebug/out/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/dex/debug/mergeProjectDexDebug/out/classes.dex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_build.d" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_build.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/merge-state" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/merge-state" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/zip-cache/0wSLjZ1qZpuq+7gUtQoLe4ZUrj0=" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/zip-cache/0wSLjZ1qZpuq+7gUtQoLe4ZUrj0=" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/zip-cache/Wf7t6+ycYpfrwWFIlPjKJ9inE+w=" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/zip-cache/Wf7t6+ycYpfrwWFIlPjKJ9inE+w=" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/zip-cache/uUsjBlq4eN3nFnMrFd7w5+sj6jo=" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/zip-cache/uUsjBlq4eN3nFnMrFd7w5+sj6jo=" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/zip-cache/vh9yvNDeNM9bYp8Cg7ETbm3Y81M=" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/zip-cache/vh9yvNDeNM9bYp8Cg7ETbm3Y81M=" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeNativeLibs/merge-state" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeNativeLibs/merge-state" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeNativeLibs/zip-cache/0wSLjZ1qZpuq+7gUtQoLe4ZUrj0=" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeNativeLibs/zip-cache/0wSLjZ1qZpuq+7gUtQoLe4ZUrj0=" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeNativeLibs/zip-cache/Wf7t6+ycYpfrwWFIlPjKJ9inE+w=" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeNativeLibs/zip-cache/Wf7t6+ycYpfrwWFIlPjKJ9inE+w=" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeNativeLibs/zip-cache/uUsjBlq4eN3nFnMrFd7w5+sj6jo=" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeNativeLibs/zip-cache/uUsjBlq4eN3nFnMrFd7w5+sj6jo=" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeNativeLibs/zip-cache/vh9yvNDeNM9bYp8Cg7ETbm3Y81M=" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeNativeLibs/zip-cache/vh9yvNDeNM9bYp8Cg7ETbm3Y81M=" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/mergeDebugAssets/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/mergeDebugAssets/merger.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/mergeDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/kotlin/compileDebugKotlin/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/kotlin/compileDebugKotlin/build-history.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/kotlin/compileDebugKotlin/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/kotlin/compileDebugKotlin/last-build.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/app/outputs/apk/debug/app-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/outputs/apk/debug/app-debug.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/app/outputs/flutter-apk/app-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/outputs/flutter-apk/app-debug.apk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/CardView/ProductCard.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/CardView/ProductCard.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/app.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/bloc/CategoryBloc/CategoryBloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/bloc/CategoryBloc/CategoryBloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/bloc/CategoryBloc/CategoryEvent.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/bloc/CategoryBloc/CategoryEvent.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/bloc/CategoryBloc/CategoryState.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/bloc/CategoryBloc/CategoryState.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/bloc/GetSubCategoryBloc/GetSubCategoryBloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/bloc/GetSubCategoryBloc/GetSubCategoryBloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/bloc/Login_Bloc/LoginBloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/bloc/Login_Bloc/LoginBloc.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/bloc/ProductBloc/ProductBloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/bloc/ProductBloc/ProductBloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/bloc/ProductBloc/ProductEvent.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/bloc/ProductBloc/ProductEvent.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/bloc/ProductDetailBloc/ProductDetailBloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/bloc/ProductDetailBloc/ProductDetailBloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/new_model/product.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/new_model/product.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/new_model/product_detailed.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/new_model/product_detailed.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/resources/Cart_Screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/resources/Cart_Screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/bloc/RegisterBloc/RegisterBloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/bloc/RegisterBloc/RegisterBloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/resources/CheckOut_Screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/resources/CheckOut_Screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/resources/ExploreScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/resources/ExploreScreen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/resources/ExploreScreenNew.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/resources/ExploreScreenNew.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/resources/HomePage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/resources/HomePage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/resources/ProductScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/resources/ProductScreen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/resources/HomeScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/resources/HomeScreen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/resources/LoginScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/resources/LoginScreen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/resources/ProductWithCatLv3_Screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/resources/ProductWithCatLv3_Screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/resources/Product_Detail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/resources/Product_Detail.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/resources/ProfileScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/resources/ProfileScreen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/resources/SearchScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/resources/SearchScreen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/resources/widget/category1_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/resources/widget/category1_button.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/resources/widget/category2_dropdown.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/resources/widget/category2_dropdown.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +35,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="192.168.98.101:5555" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="192.168.125.101:5555" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -77,7 +51,7 @@
   <component name="PropertiesComponent">
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/src/bloc/GetSubCategoryBloc" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/src/bloc/RecommendProductBloc" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -85,15 +59,15 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Khang\Documents\Github\FashionShop.uit\assets" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Khang\Documents\Github\Ecommer-flutter-app\lib\src\bloc\RecommendProductBloc" />
       <recent name="C:\Users\Khang\Documents\Github\Ecommer-flutter-app\lib\src\bloc\GetSubCategoryBloc" />
       <recent name="C:\Users\Khang\Documents\Github\FashionShop.uit\ios" />
       <recent name="C:\Users\Khang\Documents\Github\FashionShop.uit\fashionshop\android\app" />
       <recent name="C:\Users\Khang\Documents\Github\FashionShop.uit\fashionshop\lib\src\CardView" />
-      <recent name="C:\Users\Khang\Documents\Github\FashionShop.uit\fashionshop\lib\src\resources" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Khang\Documents\Github\FashionShop.uit\assets" />
     </key>
   </component>
   <component name="RunDashboard">

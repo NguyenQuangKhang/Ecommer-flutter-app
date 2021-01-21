@@ -1,7 +1,10 @@
 
 import 'package:fashionshop/src/bloc/Login_Bloc/LoginBloc.dart';
+import 'package:fashionshop/src/bloc/RecommendProductBloc/RecommendProductBloc.dart';
+import 'package:fashionshop/src/bloc/RecommendProductBloc/RecommendProductEvent.dart';
 
 import 'package:fashionshop/src/config/GraphQLConfiguration.dart';
+import 'package:fashionshop/src/resources/HomeScreen.dart';
 import 'package:fashionshop/src/resources/LoginScreen.dart';
 import 'package:fashionshop/src/resources/add_review_screen.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +23,16 @@ class MyApp extends StatelessWidget {
     return GraphQLProvider(
         client: graphQLConfiguration.client,
         child: CacheProvider(
-            child: BlocProvider(
-              create: (BuildContext context) =>LoginBloc(),
+            child: MultiBlocProvider(
+              providers: [
+                BlocProvider<LoginBloc>(
+                  create: (BuildContext context) => LoginBloc(),
+                ),
+                BlocProvider<RecommendProductBloc>(
+                  create: (BuildContext context) => RecommendProductBloc(),
+                ),
+              ],
+
 
               child: MaterialApp(
           title: 'Fashion Shop',
@@ -40,7 +51,7 @@ class MyApp extends StatelessWidget {
                 900: const Color(0xFF5BBABB),
               }),
           ),
-          home:LoginScreen()
+          home:HomeScreen()
 //          BlocProvider<SearchBloc>(
 //                  create: (context){
 //            return SearchBloc(
