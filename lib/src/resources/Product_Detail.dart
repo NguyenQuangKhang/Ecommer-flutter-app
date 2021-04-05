@@ -624,7 +624,7 @@ class _Product_DetailState extends State<Product_Detail> {
                                 backgroundImage: NetworkImage(
                                     context
                                         .bloc<ProductDetailBloc>()
-                                        .productDetail.shopInfo.shopLogo),
+                                        .productDetail.shopInfo?.shopLogo?? "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg"),
                                 radius: 15,
                               ),
                               SizedBox(
@@ -636,7 +636,7 @@ class _Product_DetailState extends State<Product_Detail> {
                                   Text(
                                     context
                                         .bloc<ProductDetailBloc>()
-                                        .productDetail.shopInfo.shopName,
+                                        .productDetail.shopInfo?.shopName??"",
                                     style: TextStyle(
                                         fontSize: 15,
                                         color: Colors.black,
@@ -645,7 +645,7 @@ class _Product_DetailState extends State<Product_Detail> {
 
                                   Text(context
                                       .bloc<ProductDetailBloc>()
-                                      .productDetail.shopInfo.shopWarehouseCity,
+                                      .productDetail.shopInfo?.shopWarehouseCity ?? "",
                                       style: TextStyle(
                                         fontSize: 15,
                                         color: Colors.black54,

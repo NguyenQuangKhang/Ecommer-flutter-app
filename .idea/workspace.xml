@@ -3,9 +3,21 @@
   <component name="ChangeListManager">
     <list default="true" id="0e6f5e8f-5aa3-4ac4-8dd4-21bd6bbc4be5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_build.d" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_build.d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/kotlin/compileDebugKotlin/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/kotlin/compileDebugKotlin/build-history.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/kotlin/compileDebugKotlin/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/kotlin/compileDebugKotlin/last-build.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/outputs/apk/debug/app-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/outputs/apk/debug/app-debug.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/outputs/flutter-apk/app-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/outputs/flutter-apk/app-debug.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/bloc/CategoryBloc/CategoryBloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/bloc/CategoryBloc/CategoryBloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/resources/ExploreScreenNew.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/resources/ExploreScreenNew.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/bloc/GetSubCategoryBloc/GetSubCategoryBloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/bloc/GetSubCategoryBloc/GetSubCategoryBloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/bloc/Login_Bloc/LoginBloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/bloc/Login_Bloc/LoginBloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/bloc/ProductBloc/ProductBloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/bloc/ProductBloc/ProductBloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/bloc/ProductDetailBloc/ProductDetailBloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/bloc/ProductDetailBloc/ProductDetailBloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/bloc/RecommendProductBloc/RecommendProductBloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/bloc/RecommendProductBloc/RecommendProductBloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/new_model/product_detailed.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/new_model/product_detailed.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/resources/HomePage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/resources/HomePage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/resources/Product_Detail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/resources/Product_Detail.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/resources/widget/category1_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/resources/widget/category1_button.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/resources/widget/category2_dropdown.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/resources/widget/category2_dropdown.dart" afterDir="false" />
     </list>
@@ -15,7 +27,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="192.168.248.101:5555" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>

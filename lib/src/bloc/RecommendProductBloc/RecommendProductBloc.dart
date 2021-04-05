@@ -26,7 +26,7 @@ class RecommendProductBloc
     if (event is RecommendProductLoadEvent) {
       try {
         yield RecommendProductLoading();
-        final response = await http.get("http://192.168.1.227:8080/api/v1/recommend/top-rating/"+event.userId.toString());
+        final response = await http.get("http://10.0.206.16:8080/api/v1/recommend/top-rating/"+event.userId.toString());
         if(response.statusCode==200)
           {
             data = json.decode(response.body).cast<Map<String,dynamic>>().map<Product>((json) => Product.fromJson(json)).toList();

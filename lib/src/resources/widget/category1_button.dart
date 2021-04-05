@@ -23,7 +23,8 @@ class Category1Button extends StatelessWidget {
               flex: 1,
               child: Image.network(
                data.icon,
-                color: isSelected?Colors.red: Colors.black54,
+                fit: BoxFit.fill,
+//                color: isSelected?Colors.red: null,
               ),
             ),
 

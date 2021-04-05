@@ -397,7 +397,7 @@ class Ratings {
     if (json["data"] != null) {
       _data = [];
       json["data"].forEach((v) {
-        _data.add(DataRating.fromJson(v));
+        if(v!=null)_data.add(DataRating.fromJson(v));
       });
     }
     _totalCount = json["total_count"];
@@ -488,7 +488,7 @@ class Comments {
 
   Comments.fromJson(dynamic json) {
     _totalCount = json["totalCount"].toInt();
-    if (json["data"] != null) {
+    if (json["data"] == null) {
       _data = [];
       json["data"].forEach((v) {
         _data.add(Data.fromJson(v));

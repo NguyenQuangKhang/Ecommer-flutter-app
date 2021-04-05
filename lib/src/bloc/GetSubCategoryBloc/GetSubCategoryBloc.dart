@@ -29,7 +29,7 @@ class GetSubCategoryBloc
     if (event is GetSubCatInitiateEvent) {
       yield LoadingCategory();
       final response2 = await http.get(
-          "http://192.168.1.227:8080/api/v1/categories/" +
+          "http://10.0.206.16:8080/api/v1/categories/" +
               event.parentId.toString() +
               "/sub-categories");
       sub_cat = json

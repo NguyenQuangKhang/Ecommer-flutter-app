@@ -103,6 +103,7 @@ class _HomePageState extends State<HomePage> {
     }
     return result;
   }
+
   RecommendProductBloc recommendProductBloc;
 
   ScrollController _scrollController = ScrollController();
@@ -115,8 +116,7 @@ class _HomePageState extends State<HomePage> {
     //LoadCategory();
     context.bloc<RecommendProductBloc>()
       ..add(RecommendProductLoadEvent(
-          userId:
-          context.bloc<LoginBloc>().user?.id ?? 0));
+          userId: context.bloc<LoginBloc>().user?.id ?? 0));
     print("Reload");
     _scrollController2.addListener(() {
       if (_scrollController2.position.pixels ==
@@ -416,17 +416,27 @@ class _HomePageState extends State<HomePage> {
                                             ),
                                           ),
                                           onTap: () {
-                                            Navigator.push(context,MaterialPageRoute(
-                                                builder: (context)=> BlocProvider<ProductBloc>(
-                                                  create: (context){
-                                                    return ProductBloc(
-
-                                                    )..add(ProductByCategoryCodeEvent(categoryPath: category.categoryPath));
-                                                  },
-                                                  child:  ProductWithSubCat_Screen(title: category.name, category: category),
-                                                )
-                                            )
-                                            );
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        BlocProvider<
+                                                            ProductBloc>(
+                                                          create: (context) {
+                                                            return ProductBloc()
+                                                              ..add(ProductByCategoryCodeEvent(
+                                                                  categoryPath:
+                                                                      category
+                                                                          .categoryPath));
+                                                          },
+                                                          child:
+                                                              ProductWithSubCat_Screen(
+                                                                  title:
+                                                                      category
+                                                                          .name,
+                                                                  category:
+                                                                      category),
+                                                        )));
 //                                            Navigator.push(
 //                                                context,
 //                                                MaterialPageRoute(
@@ -479,28 +489,43 @@ class _HomePageState extends State<HomePage> {
                             if (state is RecommendProductSuccess)
                               return Container(
                                   width: MediaQuery.of(context).size.width,
-                                 height:MediaQuery.of(context).size.height/3 +22+10 ,
+                                  height:
+                                      MediaQuery.of(context).size.height / 3 +
+                                          22 +
+                                          10,
                                   child: ListView.builder(
                                     scrollDirection: Axis.horizontal,
                                     itemBuilder:
                                         (BuildContext context, int index) {
                                       return Container(
-                                        margin: index != context
-                                            .bloc<RecommendProductBloc>()
-                                            .data
-                                            .length-1 ?EdgeInsets.only(right: 10,left: 10,bottom: 5,top: 5): EdgeInsets.only(bottom: 5,top: 5,left: 10,right: 10),
+                                        margin: index !=
+                                                context
+                                                        .bloc<
+                                                            RecommendProductBloc>()
+                                                        .data
+                                                        .length -
+                                                    1
+                                            ? EdgeInsets.only(
+                                                right: 10,
+                                                left: 10,
+                                                bottom: 5,
+                                                top: 5)
+                                            : EdgeInsets.only(
+                                                bottom: 5,
+                                                top: 5,
+                                                left: 10,
+                                                right: 10),
                                         decoration: BoxDecoration(
                                           color: Colors.white,
                                           backgroundBlendMode:
-                                          BlendMode.colorBurn,
+                                              BlendMode.colorBurn,
                                           borderRadius:
-                                          BorderRadius.circular(8),
-                                          border: Border.all(
-                                              color: Colors.white),
+                                              BorderRadius.circular(8),
+                                          border:
+                                              Border.all(color: Colors.white),
                                           boxShadow: [
                                             BoxShadow(
-                                              color: Colors.grey
-                                                  ,
+                                              color: Colors.grey,
                                               spreadRadius: 2,
                                               blurRadius: 4,
                                               offset: Offset(0,
@@ -508,12 +533,40 @@ class _HomePageState extends State<HomePage> {
                                             ),
                                           ],
                                         ),
-                                        child: ProductCard(
-                                          product: context
-                                              .bloc<RecommendProductBloc>()
-                                              .data[index],
-                                          height: MediaQuery.of(context).size.height/3,
-                                          width: MediaQuery.of(context).size.width/2-20,
+                                        child: InkWell(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) => BlocProvider<
+                                                            ProductDetailBloc>(
+                                                        create: (context) {
+                                                          return ProductDetailBloc()
+                                                            ..add(ProductDetailLoadEvent(
+                                                                id: context
+                                                                    .bloc<
+                                                                        RecommendProductBloc>()
+                                                                    .data[index]
+                                                                    .productId,
+                                                               ));
+                                                        },
+                                                        child:
+                                                            Product_Detail())));
+                                          },
+                                          child: ProductCard(
+                                            product: context
+                                                .bloc<RecommendProductBloc>()
+                                                .data[index],
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height /
+                                                3,
+                                            width: MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    2 -
+                                                20,
+                                          ),
                                         ),
                                       );
                                     },
@@ -521,7 +574,6 @@ class _HomePageState extends State<HomePage> {
                                         .bloc<RecommendProductBloc>()
                                         .data
                                         .length,
-
                                   ));
                             if (state is RecommendProductFailure)
                               return Center(
@@ -758,11 +810,7 @@ class _HomePageState extends State<HomePage> {
                                                                             .data[
                                                                                 index]
                                                                             .productId,
-                                                                        person_id: context
-                                                                            .bloc<LoginBloc>()
-                                                                            .user
-                                                                            .id
-                                                                            .toString()));
+                                                                      ));
                                                                 },
                                                                 child:
                                                                     Product_Detail())));

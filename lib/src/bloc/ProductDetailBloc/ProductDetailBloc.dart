@@ -17,9 +17,10 @@ class ProductDetailBloc extends Bloc<ProductDetailEvent, ProductDetailState> {
   @override
   Stream<ProductDetailState> mapEventToState(event) async* {
     if (event is ProductDetailLoadEvent) {
-      final response = await http.get("http://192.168.1.227:8080/api/v1/product/" +
+      final response = await http.get("http://10.0.206.16:8080/api/v1/product/" +
           event.id.toString());
-
+      print("a");
+print(event.id);
       productDetail =ProductDetailed.fromJson(json.decode(response.body));
       yield ProductDetailShowState(data: productDetail);
     }

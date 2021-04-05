@@ -27,7 +27,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       yield LoginLoading();
 
         final response = await http.post(
-          "http://192.168.1.227:8080/api/v1/account/login",
+          "http://10.0.206.16:8080/api/v1/account/login",
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           },
